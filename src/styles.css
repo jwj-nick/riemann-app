@@ -114,3 +114,38 @@ h2 { font-size: 1.2rem; margin-top: 2em; }
 .tick.prime { background: var(--prime); }
 .tick.power { background: var(--muted); height: 6px; }
 .beta { display: block; margin-top: 12px; }
+.stage-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 14px; }
+.stage-nav a { text-decoration: none; max-width: 48%; }
+.stage-nav a:last-child { text-align: right; }
+:root { --c1: #e8590c; --c2: #2f9e44; --c3: #7048e8; --c4: #1971c2; --c5: #c2255c; --c6: #a07c00; --ok: #2f9e44; }
+@media (prefers-color-scheme: dark) {
+  :root { --c1: #ffa94d; --c2: #69db7c; --c3: #b197fc; --c4: #74c0fc; --c5: #f783ac; --c6: #ffd43b; --ok: #69db7c; }
+}
+.sieve-grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 3px; }
+.sieve-grid .cell {
+  aspect-ratio: 1; border: 1px solid var(--border); border-radius: 6px; background: var(--bg);
+  font-size: 13px; font-variant-numeric: tabular-nums; padding: 0; transition: opacity 0.2s, background 0.2s;
+}
+.sieve-grid .cell.one { opacity: 0.3; }
+.sieve-grid .cell.crossed { opacity: 0.45; text-decoration: line-through; background: transparent; border-style: dashed; }
+.sieve-grid .cell.prime { background: var(--fg); color: var(--bg); border-color: var(--fg); font-weight: 700; }
+.sieve-grid .cell.next { border: 2px solid var(--accent); color: var(--accent); font-weight: 700; }
+.question { font-size: 16px; font-weight: 600; margin: 4px 0 10px; }
+.choices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.choice.correct { background: var(--ok); border-color: var(--ok); color: #fff; }
+.choice.wrong { background: var(--danger); border-color: var(--danger); color: #fff; }
+.choice:disabled { opacity: 1; }
+.note.ok { color: var(--ok); font-weight: 600; }
+.sw.prime { border-color: var(--prime); }
+.sw.dashed-prime { border-top-style: dashed; }
+.plane { width: 100%; max-width: 420px; display: block; margin: 0 auto; touch-action: none; user-select: none; }
+.plane .grid line { stroke: var(--grid); stroke-width: 1; }
+.plane .grid text, .plane .axis-label { fill: var(--muted); font-size: 10px; }
+.plane .axis { stroke: var(--muted); stroke-width: 1.2; }
+.plane .unit { fill: none; stroke: var(--muted); stroke-dasharray: 3 4; }
+.plane .zvec { stroke: var(--accent); stroke-width: 2; }
+.plane .zpt { fill: var(--accent); stroke: var(--surface); stroke-width: 2; cursor: grab; }
+.plane .trail { fill: none; stroke: var(--accent); stroke-width: 2; opacity: 0.35; }
+.plane .euler path, .plane .euler line { fill: none; stroke: var(--prime); stroke-width: 1.5; }
+.plane .euler .proj { stroke-dasharray: 3 3; }
+.plane .euler circle { fill: var(--prime); }

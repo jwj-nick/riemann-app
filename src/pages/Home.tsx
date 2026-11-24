@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-const READY = new Set([6]);
+const READY = new Set([1, 2, 3, 4, 6]);
 
 export default function Home() {
   const { t } = useTranslation();
