@@ -153,5 +153,9 @@
     "poisson": "Random points",
     "small": "Share of spacings < ¼: zeta {{zeta}}%, GUE {{gue}}%, random {{poisson}}%. Zeros repel each other.",
     "nuclear": "Nuclear energy level data will be added after checking public sources."
+  },
+  "teaser": {
+    "play": "Listen",
+    "caption": "By the end of the journey, you will know what this sound is."
   }
 }

@@ -3,7 +3,7 @@ import { HashRouter, Link, Route, Routes, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Home from './pages/Home';
 import Stage06 from './stages/Stage06';
-import { Stage01, Stage02, Stage03, Stage04 } from './stages/basic';
+import { Stage00, Stage01, Stage02, Stage03, Stage04 } from './stages/basic';
 import { Stage05, Stage07, Stage08 } from './stages/advanced';
 
 function ScrollToTop() {
@@ -30,6 +30,7 @@ export default function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/stage/0" element={<Stage00 />} />
           <Route path="/stage/1" element={<Stage01 />} />
           <Route path="/stage/2" element={<Stage02 />} />
           <Route path="/stage/3" element={<Stage03 />} />

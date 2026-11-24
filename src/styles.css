@@ -157,3 +157,6 @@ h2 { font-size: 1.2rem; margin-top: 2em; }
 .sw.band { border-top: 8px solid var(--grid); }
 .sw.thick { border-top-width: 6px; opacity: 0.6; }
 .danger-text { color: var(--danger) !important; }
+.canvas-wrap.square { aspect-ratio: 1; max-width: 360px; margin: 0 auto; }
+.play-big { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-size: 16px; padding: 10px 20px; border-radius: 999px; }
+.note.center { text-align: center; }

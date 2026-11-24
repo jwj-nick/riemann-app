@@ -14,6 +14,7 @@ SRC = ROOT / "content" / "ko" / "story-draft.md"
 
 # 스테이지별 [그래픽] 자리 → 컴포넌트 id (원고 등장 순서)
 GRAPHICS = {
+    0: ["teaser"],
     1: ["sieve", "next-prime"],
     2: ["zoom-graph"],
     3: ["complex-plane"],

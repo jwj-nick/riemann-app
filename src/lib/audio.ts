@@ -110,6 +110,28 @@ export class PrimeSoundEngine {
     }
   }
 
+  /** 프롤로그 티저: 영점 음이 하나씩 들어와 화음을 이루고, seconds 뒤 사라진다. */
+  async teaser(gammas: ArrayLike<number>, K: number, seconds = 5) {
+    this.stop();
+    const ctx = this.ensure();
+    if (ctx.state === 'suspended') await ctx.resume();
+    this.startedAt = ctx.currentTime;
+    const fs = frequencies(gammas, K);
+    const amps = amplitudes(gammas, K);
+    const t0 = ctx.currentTime;
+    const enter = (seconds * 0.45) / K;
+    this.voices = fs.map((f, k) => {
+      const v = this.voice(f, amps[k] * 4, t0 + k * enter);
+      v.gain.gain.setTargetAtTime(0, t0 + seconds - 0.8, 0.25);
+      v.osc.stop(t0 + seconds + 0.5);
+      return v;
+    });
+    this.soloTimer = window.setTimeout(() => {
+      this.voices = [];
+      this.soloTimer = null;
+    }, (seconds + 0.5) * 1000);
+  }
+
   private voice(freq: number, amp: number, at: number): Voice {
     const ctx = this.ctx!;
     const osc = ctx.createOscillator();
