@@ -1,0 +1,29 @@
+{
+  "app": { "title": "The Music of the Primes", "subtitle": "The Riemann Hypothesis, from story to formula", "draft": "working title · in development" },
+  "nav": { "home": "Home", "lang": "한국어" },
+  "home": {
+    "intro": "A journey to the Riemann Hypothesis for adults who forgot about primes. Each stage offers story → intuition → formula → deep dive.",
+    "comingSoon": "Coming soon",
+    "start": "Open"
+  },
+  "stages": {
+    "0": "Prologue", "1": "Primes", "2": "The Prime Number Theorem", "3": "Imaginary Numbers",
+    "4": "Zeta and Euler", "5": "Riemann 1859", "6": "Zeros as Notes", "7": "The Riemann Hypothesis",
+    "8": "Quantum", "9": "Epilogue"
+  },
+  "layer": { "lv1": "Story", "lv2": "Intuition", "lv3": "Formula", "lv4": "Deep dive", "lv4Soon": "Proof sketches, code and references are coming." },
+  "explicit": {
+    "title": "Explicit formula slider", "zeros": "{{count}} zeros", "range": "x range", "smooth": "Smooth",
+    "play": "Play 1 → 1000", "pause": "Pause", "legendTrue": "True ψ(x) staircase", "legendWave": "Sum of zero waves",
+    "legendTrend": "Trend x", "prime": "prime", "primePower": "prime power",
+    "note": "ψ(x) steps up by log p at each prime p and at prime powers like 4, 8, 9.",
+    "loading": "Loading zeros…", "error": "Failed to load data."
+  },
+  "sound": {
+    "title": "The sound of the primes", "play": "Listen", "stop": "Stop", "voices": "Chord of {{count}} zeros",
+    "solo": "One at a time", "hypothesis": "Real part β of the first zero",
+    "onLine": "β = ½ · the hypothesis holds", "offLine": "β ≠ ½ · a world where it fails: this note keeps growing",
+    "mapping": "Zero height γ → frequency f = 220Hz × γ/γ₁, loudness ∝ 1/|ρ|",
+    "unsupported": "Web Audio is not supported in this browser."
+  }
+}
