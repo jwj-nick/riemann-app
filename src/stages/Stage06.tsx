@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Prose, { type Segment } from '../components/Prose';
 import ExplicitFormula from '../components/viz/ExplicitFormula';
+import PrimeSound from '../components/viz/PrimeSound';
 import storyKo from '../../content/ko/stage-06.md';
 import storyEn from '../../content/en/stage-06.md';
 import lv3Ko from '../../content/ko/stage-06-lv3-derivation.md';
@@ -18,10 +19,11 @@ const content: Record<string, { story: Segment[]; lv3: Segment[] }> = {
 export default function Stage06() {
   const { t, i18n } = useTranslation();
   const [layer, setLayer] = useState<Layer>('lv1');
-  const beta = 0.5;
+  const [beta, setBeta] = useState(0.5); // 영점 1의 실수부, 슬라이더·소리 공유
   const c = content[i18n.language] ?? content.ko;
-  const graphics: Record<string, JSX.Element> = {
+  const graphics = {
     'explicit-formula': <ExplicitFormula beta={beta} />,
+    'prime-sound': <PrimeSound beta={beta} onBeta={setBeta} />,
   };
 
   return (
@@ -42,6 +44,7 @@ export default function Stage06() {
         <div className="prose">
           <h1>{t('stages.6')}</h1>
           {graphics['explicit-formula']}
+          {graphics['prime-sound']}
         </div>
       )}
       {layer === 'lv3' && <Prose segments={c.lv3} graphics={graphics} />}
