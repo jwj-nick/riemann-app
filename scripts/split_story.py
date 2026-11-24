@@ -18,7 +18,10 @@ GRAPHICS = {
     2: ["zoom-graph"],
     3: ["complex-plane"],
     4: ["partial-sums"],
+    5: ["zeta-landscape"],
     6: ["explicit-formula", "prime-sound"],
+    7: ["zeta-spiral", "off-line"],
+    8: ["spacing"],
 }
 
 

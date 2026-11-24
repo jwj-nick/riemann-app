@@ -3,6 +3,7 @@
 리만 가설을 A to Z로 이해시키는 스테이지형 학습 웹앱. 스펙은 `docs/PRD.md`, 이야기 원고는 `content/ko/story-draft.md`가 정본이다.
 
 ## 작업 방식 (오너는 주로 폰에서 지시한다)
+- 오너 허가(2026-11): 작업 브랜치에서 커밋 후 **main에 직접 push** 가능(PR 생략). push 전 `npm test`·`npm run build`·검증 스크립트 통과 필수. 결정이 필요한 것은 세션 응답에 모은다.
 - 오너는 Claude 앱 Code 탭(클라우드 세션)에서 짧게 지시한다. 지시가 모호하면 PRD 기준으로 가장 합리적인 해석을 택하고, PR 설명 맨 위에 그 해석을 한 줄로 적는다.
 - 한 세션 = 한 PR = 한 가지 목표 (예: "Stage 6 슬라이더", "소리 엔진"). 범위가 커지면 쪼개서 다음 작업으로 남긴다.
 - PR 설명은 폰에서 읽기 좋게 쓴다:
@@ -22,7 +23,9 @@
 - 수치 데이터는 `scripts/`의 Python(mpmath)로 미리 계산해 `public/data/*.json`에 둔다. 브라우저에서 무거운 계산을 하지 않는다(필요하면 Web Worker).
 
 ## 콘텐츠 규칙
-- 스테이지 콘텐츠는 `content/{ko,en}/stage-XX.mdx`, 중고생판은 `content/{lang}/junior/`.
+- 스테이지 콘텐츠는 `content/{ko,en}/stage-XX.md`(MDX 아님: 수식 원고의 `{}`가 MDX와 충돌), 중고생판은 `content/{lang}/junior/`.
+  - `content/ko/stage-XX.md`는 `python3 scripts/split_story.py`로 `story-draft.md`에서 생성한다. 원고를 고친 뒤 다시 생성하고, 생성물은 직접 고치지 않는다.
+  - `[그래픽:id]` 줄은 컴포넌트 자리(매핑은 `split_story.py`의 GRAPHICS), `**팩트체크**`·`**Junior 한 줄**` 단락과 `## 구현 메모` 이후는 빌드 시 제외(`scripts/vite-content-md.ts`).
 - Stage 6 Lv3 수식 원고: `content/ko/stage-06-lv3-derivation.md` (구현 메모 포함). 검증: `python3 scripts/verify_explicit_formula.py`
 - 원고의 [그래픽] 표시는 인터랙션 컴포넌트를 넣을 자리다.
 - 원고의 "팩트체크" 항목은 앱 화면에 내보내지 않는다. 검증 전 일화는 "전해진다" 표현을 유지한다.
@@ -30,4 +33,4 @@
 - 외부 이미지·영상은 쓰지 않는다. 그래픽은 전부 직접 생성한다.
 
 ## 마일스톤
-PRD 8장 참고. 현재 목표: **M1 — 스캐폴드 + 데이터 스크립트 + Stage 6(명시공식 슬라이더 + 소리)**.
+PRD 8장 참고. 완료: M1(스캐폴드·데이터·Stage 6), M2(Stage 1~4). 현재 목표: **M3 — Stage 5(제타 풍경), 7(제타 나선·가설이 틀린 세계), 8(간격 통계)**.

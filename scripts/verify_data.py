@@ -36,5 +36,28 @@ g4 = pi["grids"]["4"]
 direct = all(g4[k] == sum(1 for p in primes if p <= k * 10**4 // N) for k in range(0, N + 1, 50))
 ok &= direct
 print(f"격자 d=4..9 단조·끝점 일치, d=4 직접 대조: {direct}")
+# 제타 데이터 (compute_zeta.py)
+import math
+line = json.loads((D / "zeta_line.json").read_text())
+z0 = complex(line["re"][0], line["im"][0])
+ok_line = abs(z0 - (-1.4603545)) < 1e-3
+for k in (1, 2, 3):
+    i = round(zeros[k - 1] / line["dt"])
+    m = min(abs(complex(line["re"][j], line["im"][j])) for j in (i - 1, i, i + 1))
+    ok_line &= m < 0.02
+print(f"zeta_line: ζ(½) = {z0.real:.4f} (기준 −1.4604), 첫 3개 영점에서 |ζ| < 0.02: {ok_line}")
+meta = json.loads((D / "zeta_grid.json").read_text())
+raw = (D / "zeta_grid.bin").read_bytes()
+W, Hh = meta["width"], meta["height"]
+lo, hi = meta["logRange"]
+def grid_abs(sig):
+    i = round((sig - meta["sigma"][0]) / (meta["sigma"][1] - meta["sigma"][0]) * (W - 1))
+    px = raw[4 * i : 4 * i + 4]
+    s_actual = meta["sigma"][0] + (meta["sigma"][1] - meta["sigma"][0]) * i / (W - 1)
+    return s_actual, math.exp(lo + (hi - lo) * (px[2] * 256 + px[3]) / 65535), (px[0] / 255 * 2 - 1)
+s2, a2, c2 = grid_abs(2.0)
+ok_grid = abs(s2 - 2) < 0.02 and abs(a2 - math.pi**2 / 6) < 0.05 and c2 > 0.99
+print(f"zeta_grid: |ζ({s2:.3f})| = {a2:.4f} (기준 ≈ π²/6 = 1.6449), 양의 실수: {c2 > 0.99}")
+ok &= ok_line and ok_grid
 print("PASS" if ok else "FAIL")
 sys.exit(0 if ok else 1)
