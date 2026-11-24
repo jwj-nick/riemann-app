@@ -1,6 +1,7 @@
 import { HashRouter, Link, Route, Routes } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Home from './pages/Home';
+import Stage06 from './stages/Stage06';
 
 export default function App() {
   const { t, i18n } = useTranslation();
@@ -17,6 +18,7 @@ export default function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/stage/6" element={<Stage06 />} />
           <Route path="*" element={<Home />} />
         </Routes>
       </main>
