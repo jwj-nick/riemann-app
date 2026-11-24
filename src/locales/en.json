@@ -1,29 +1,125 @@
 {
-  "app": { "title": "The Music of the Primes", "subtitle": "The Riemann Hypothesis, from story to formula", "draft": "working title · in development" },
-  "nav": { "home": "Home", "lang": "한국어" },
+  "app": {
+    "title": "The Music of the Primes",
+    "subtitle": "The Riemann Hypothesis, from story to formula",
+    "draft": "working title · in development"
+  },
+  "nav": {
+    "home": "Home",
+    "lang": "한국어"
+  },
   "home": {
     "intro": "A journey to the Riemann Hypothesis for adults who forgot about primes. Each stage offers story → intuition → formula → deep dive.",
     "comingSoon": "Coming soon",
     "start": "Open"
   },
   "stages": {
-    "0": "Prologue", "1": "Primes", "2": "The Prime Number Theorem", "3": "Imaginary Numbers",
-    "4": "Zeta and Euler", "5": "Riemann 1859", "6": "Zeros as Notes", "7": "The Riemann Hypothesis",
-    "8": "Quantum", "9": "Epilogue"
+    "0": "Prologue",
+    "1": "Primes",
+    "2": "The Prime Number Theorem",
+    "3": "Imaginary Numbers",
+    "4": "Zeta and Euler",
+    "5": "Riemann 1859",
+    "6": "Zeros as Notes",
+    "7": "The Riemann Hypothesis",
+    "8": "Quantum",
+    "9": "Epilogue"
   },
-  "layer": { "lv1": "Story", "lv2": "Intuition", "lv3": "Formula", "lv4": "Deep dive", "lv4Soon": "Proof sketches, code and references are coming." },
+  "layer": {
+    "lv1": "Story",
+    "lv2": "Intuition",
+    "lv3": "Formula",
+    "lv4": "Deep dive",
+    "lv4Soon": "Proof sketches, code and references are coming.",
+    "lv3Soon": "Step-by-step derivations are coming (M4)."
+  },
   "explicit": {
-    "title": "Explicit formula slider", "zeros": "{{count}} zeros", "range": "x range", "smooth": "Smooth",
-    "play": "Play 1 → 1000", "pause": "Pause", "legendTrue": "True ψ(x) staircase", "legendWave": "Sum of zero waves",
-    "legendTrend": "Trend x", "prime": "prime", "primePower": "prime power",
+    "title": "Explicit formula slider",
+    "zeros": "{{count}} zeros",
+    "range": "x range",
+    "smooth": "Smooth",
+    "play": "Play 1 → 1000",
+    "pause": "Pause",
+    "legendTrue": "True ψ(x) staircase",
+    "legendWave": "Sum of zero waves",
+    "legendTrend": "Trend x",
+    "prime": "prime",
+    "primePower": "prime power",
     "note": "ψ(x) steps up by log p at each prime p and at prime powers like 4, 8, 9.",
-    "loading": "Loading zeros…", "error": "Failed to load data."
+    "loading": "Loading zeros…",
+    "error": "Failed to load data."
   },
   "sound": {
-    "title": "The sound of the primes", "play": "Listen", "stop": "Stop", "voices": "Chord of {{count}} zeros",
-    "solo": "One at a time", "hypothesis": "Real part β of the first zero",
-    "onLine": "β = ½ · the hypothesis holds", "offLine": "β ≠ ½ · a world where it fails: this note keeps growing",
+    "title": "The sound of the primes",
+    "play": "Listen",
+    "stop": "Stop",
+    "voices": "Chord of {{count}} zeros",
+    "solo": "One at a time",
+    "hypothesis": "Real part β of the first zero",
+    "onLine": "β = ½ · the hypothesis holds",
+    "offLine": "β ≠ ½ · a world where it fails: this note keeps growing",
     "mapping": "Zero height γ → frequency f = 220Hz × γ/γ₁, loudness ∝ 1/|ρ|",
     "unsupported": "Web Audio is not supported in this browser."
+  },
+  "common": {
+    "reset": "Reset",
+    "play": "Play",
+    "pause": "Pause",
+    "auto": "Auto"
+  },
+  "sieve": {
+    "title": "Sieve of Eratosthenes",
+    "size": "1 – {{n}}",
+    "tapHint": "Tap the smallest number not yet crossed out. Its multiples disappear.",
+    "notYet": "{{n}} is a multiple of {{p}}. Start with {{p}}.",
+    "crossed": "{{n}} was already crossed out as a multiple of {{p}}.",
+    "found": "{{count}} primes found",
+    "sqrtDone": "{{p}}² = {{sq}} > {{n}}. Everything left is prime. Why?",
+    "finishAll": "Mark the rest as prime",
+    "done": "Done! There are {{count}} primes up to {{n}}."
+  },
+  "nextPrime": {
+    "title": "Guess the next prime",
+    "question": "How far after {{p}} is the next prime?",
+    "more": "{{n}} or more",
+    "right": "Correct! {{q}}",
+    "wrong": "Not quite. The next prime is {{q}} (gap {{gap}})",
+    "score": "{{right}} / {{total}} correct",
+    "next": "Next",
+    "summary": "{{right}} of {{total}}. One next prime is hard to predict, yet the average gap is steady at about ln p ≈ {{avg}} — a clue for Stage 2."
+  },
+  "zoom": {
+    "title": "Zoom graph",
+    "xmax": "x ≤ {{x}}",
+    "pi": "π(x) actual count",
+    "xlog": "x / ln x",
+    "li": "Li(x)",
+    "error": "Show error",
+    "errPi": "π(x) − x/ln x",
+    "errLi": "π(x) − Li(x)",
+    "readout": "x = {{x}}: π = {{pi}}, x/ln x ≈ {{xl}}, Li ≈ {{li}}",
+    "ratio": "π(x) ÷ (x/ln x) = {{r}}"
+  },
+  "complex": {
+    "title": "Complex plane playground",
+    "times": "×i",
+    "neg": "×(−1)",
+    "drag": "Drag the point.",
+    "count": "Pressed ×i {{n}} times → {{deg}}° turn",
+    "euler": "θ",
+    "eulerOn": "Show e^iθ",
+    "re": "Real",
+    "im": "Imaginary",
+    "full": "Four presses bring it home — i⁴ = 1"
+  },
+  "sums": {
+    "title": "The Basel problem: partial sums",
+    "terms": "{{n}} terms",
+    "sum": "Sum 1 + 1/2² + … + 1/N²",
+    "product": "Prime product ∏ 1/(1 − p⁻²), p ≤ N",
+    "target": "π²/6 = 1.644934…",
+    "gap": "Remaining gap: sum {{a}}, product {{b}}",
+    "exp": "Exponent s",
+    "targetS4": "π⁴/90 = 1.082323…"
   }
 }
