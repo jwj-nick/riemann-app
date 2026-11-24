@@ -121,5 +121,37 @@
     "gap": "Remaining gap: sum {{a}}, product {{b}}",
     "exp": "Exponent s",
     "targetS4": "π⁴/90 = 1.082323…"
+  },
+  "landscape": {
+    "title": "The zeta landscape",
+    "height": "Height t",
+    "strip": "Highlight critical strip",
+    "noWebgl": "WebGL is not available on this device.",
+    "legend": "Color = direction (argument) of ζ(s), brightness = size (darker is closer to 0; the pole at s = 1 is white). Around a zero every color appears once. White circles mark computed zeros — all on the dashed line Re = ½. The 'trivial zeros' hide at −2, −4 on the real axis."
+  },
+  "spiral": {
+    "title": "The zeta spiral",
+    "ping": "Zero chime",
+    "found": "{{count}} zeros lit"
+  },
+  "offline": {
+    "title": "A world where the hypothesis fails",
+    "actual": "Actual ψ(x) − x",
+    "model": "{{k}}-zero model",
+    "band": "±√x",
+    "on": "All zeros at β = ½: the error wiggles evenly inside the √x band.",
+    "off": "One zero off the line: its wave grows like x^β and drags the error out of the band. The real primes (black) don't."
+  },
+  "spacing": {
+    "title": "Zero spacing histogram",
+    "n": "{{n}} spacings",
+    "zeta": "Zeta zero spacings",
+    "gueCurve": "Random matrix (GUE) curve",
+    "poissonCurve": "Pure random curve",
+    "compare": "Overlay",
+    "gue": "GUE matrices",
+    "poisson": "Random points",
+    "small": "Share of spacings < ¼: zeta {{zeta}}%, GUE {{gue}}%, random {{poisson}}%. Zeros repel each other.",
+    "nuclear": "Nuclear energy level data will be added after checking public sources."
   }
 }

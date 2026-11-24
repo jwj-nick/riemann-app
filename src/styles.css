@@ -149,3 +149,11 @@ h2 { font-size: 1.2rem; margin-top: 2em; }
 .plane .euler path, .plane .euler line { fill: none; stroke: var(--prime); stroke-width: 1.5; }
 .plane .euler .proj { stroke-dasharray: 3 3; }
 .plane .euler circle { fill: var(--prime); }
+.canvas-wrap.tall { aspect-ratio: 3 / 4; max-height: 70vh; margin: 0 auto; }
+.overlay-canvas { position: absolute; inset: 0; pointer-events: none; }
+.zero-chips { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 10px; }
+.chip { font-size: 12px; font-variant-numeric: tabular-nums; border: 1px solid var(--prime); color: var(--prime); border-radius: 999px; padding: 1px 8px; }
+.sw.danger { border-color: var(--danger); }
+.sw.band { border-top: 8px solid var(--grid); }
+.sw.thick { border-top-width: 6px; opacity: 0.6; }
+.danger-text { color: var(--danger) !important; }

@@ -65,3 +65,32 @@ export function usePiData(): { data: PiData | null; error: boolean } {
   }, []);
   return { data, error };
 }
+
+/** 1회 fetch 후 캐시하는 범용 JSON 훅. */
+const jsonCache = new Map<string, Promise<unknown>>();
+export function useJson<T>(name: string): { data: T | null; error: boolean } {
+  const [data, setData] = useState<T | null>(null);
+  const [error, setError] = useState(false);
+  useEffect(() => {
+    let alive = true;
+    let p = jsonCache.get(name);
+    if (!p) {
+      p = fetch(`${import.meta.env.BASE_URL}data/${name}`).then((r) => {
+        if (!r.ok) throw new Error(String(r.status));
+        return r.json();
+      });
+      jsonCache.set(name, p);
+    }
+    p.then(
+      (d) => alive && setData(d as T),
+      () => {
+        jsonCache.delete(name);
+        if (alive) setError(true);
+      },
+    );
+    return () => {
+      alive = false;
+    };
+  }, [name]);
+  return { data, error };
+}

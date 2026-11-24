@@ -24,5 +24,5 @@ export const Stage03 = () => (
   <StagePage n={3} prev={2} next={4} content={{ story: { ko: s3ko, en: s3en } }} graphics={{ 'complex-plane': <ComplexPlane /> }} />
 );
 export const Stage04 = () => (
-  <StagePage n={4} prev={3} next={6} content={{ story: { ko: s4ko, en: s4en } }} graphics={{ 'partial-sums': <PartialSums /> }} />
+  <StagePage n={4} prev={3} next={5} content={{ story: { ko: s4ko, en: s4en } }} graphics={{ 'partial-sums': <PartialSums /> }} />
 );

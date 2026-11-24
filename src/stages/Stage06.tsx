@@ -12,7 +12,8 @@ export default function Stage06() {
   return (
     <StagePage
       n={6}
-      prev={4}
+      prev={5}
+      next={7}
       content={{ story: { ko: storyKo, en: storyEn }, lv3: { ko: lv3Ko, en: lv3En } }}
       graphics={{
         'explicit-formula': <ExplicitFormula beta={beta} />,
