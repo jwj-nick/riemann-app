@@ -56,11 +56,11 @@ Junior 아이디어:
 ## 5. AI 튜터 원칙
 - 정본은 **사전 작성 유도**. AI는 보조(질문 응답·재설명)만.
 - 학습 원리: 소크라테스식 문답, 생성 효과(사용자가 먼저 예측/답하게), **AI는 힌트만, 정답은 사용자가**.
-- Claude API 호출은 서버리스 함수(Vercel) 경유, 키 클라이언트 노출 금지.
+- GitHub Pages는 정적 호스팅이라 서버가 없음. AI 튜터는 v1에서 사전 작성 힌트(정적)로 시작하고, 실시간 Claude 호출은 별도 프록시(예: Cloudflare Workers) 도입 시 추가. 키 클라이언트 노출 금지.
 - 콘텐츠 스키마를 과목 독립적으로 설계 → 범용 학습 시스템 코어로 재사용 가능하게.
 
 ## 6. 기술 스택
-- React + Vite + TypeScript, 배포 Vercel
+- React + Vite + TypeScript, 배포 GitHub Pages (jwj-nick.github.io/riemann-app, GitHub Actions)
 - 수식 KaTeX / 그래프 D3 + Canvas / 풍경 WebGL / 소리 Web Audio
 - 콘텐츠: MDX 또는 JSON(스테이지 × 레이어 × 언어 × 에디션)
 - i18n: react-i18next, `ko` 기본, `en` 슬롯

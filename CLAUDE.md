@@ -8,19 +8,22 @@
 - PR 설명은 폰에서 읽기 좋게 쓴다:
   1. 한 줄 요약
   2. 무엇이 바뀌었나 (불릿 3~5개)
-  3. 확인 방법: Vercel 미리보기 URL과 확인할 화면·조작
+  3. 확인 방법: 확인할 화면·조작. PR 미리보기 URL이 없으므로 **스크린샷(모바일 폭 390px 포함)을 반드시 첨부**한다. 머지 후 https://jwj-nick.github.io/riemann-app/ 에 자동 배포된다.
   4. 스크린샷 (가능하면)
   5. 남은 일 / 결정이 필요한 것 (질문은 여기에 모은다)
 - 수치·수식을 다루는 변경은 검증 스크립트를 돌리고 결과(예: π(x) 대조, 영점 값 대조)를 PR에 붙인다.
 
 ## 기술 스택
-- React + Vite + TypeScript, 배포 Vercel
+- React + Vite + TypeScript, 배포 **GitHub Pages** (`.github/workflows/deploy.yml`, main 푸시 시 자동 배포)
+  - Vite `base`는 `/riemann-app/`. 라우팅은 HashRouter(또는 404.html 폴백)로 Pages의 새로고침 404를 피한다.
+  - 정적 사이트이므로 서버 코드 없음. 비밀 키를 클라이언트 번들에 절대 넣지 않는다.
 - KaTeX(수식), D3 + Canvas(그래프), WebGL(제타 풍경), Web Audio(소리)
 - i18n: react-i18next, `ko` 기본, `en`은 키만 맞춰 둔다. UI 문자열·콘텐츠 하드코딩 금지.
 - 수치 데이터는 `scripts/`의 Python(mpmath)로 미리 계산해 `public/data/*.json`에 둔다. 브라우저에서 무거운 계산을 하지 않는다(필요하면 Web Worker).
 
 ## 콘텐츠 규칙
 - 스테이지 콘텐츠는 `content/{ko,en}/stage-XX.mdx`, 중고생판은 `content/{lang}/junior/`.
+- Stage 6 Lv3 수식 원고: `content/ko/stage-06-lv3-derivation.md` (구현 메모 포함). 검증: `python3 scripts/verify_explicit_formula.py`
 - 원고의 [그래픽] 표시는 인터랙션 컴포넌트를 넣을 자리다.
 - 원고의 "팩트체크" 항목은 앱 화면에 내보내지 않는다. 검증 전 일화는 "전해진다" 표현을 유지한다.
 - AI 튜터는 힌트만 주고 답은 사용자가 말하게 한다(소크라테스식). 사전 작성된 유도가 정본이다.
