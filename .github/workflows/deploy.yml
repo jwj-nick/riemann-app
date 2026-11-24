@@ -21,16 +21,11 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
-      - name: Build (skipped until the app is scaffolded)
-        run: |
-          if [ -f package.json ]; then
-            npm ci
-            npm run build
-          else
-            mkdir -p dist
-            echo '<!doctype html><meta charset="utf-8"><title>소수의 음악</title><p>준비 중입니다.</p>' > dist/index.html
-          fi
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
