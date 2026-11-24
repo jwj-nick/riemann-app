@@ -8,6 +8,11 @@ import ComplexPlane from '../components/viz/ComplexPlane';
 import PartialSums from '../components/viz/PartialSums';
 import s0ko from '../../content/ko/stage-00.md';
 import s0en from '../../content/en/stage-00.md';
+import lv3en from '../../content/en/lv3-pending.md';
+import l1 from '../../content/ko/stage-01-lv3.md';
+import l2 from '../../content/ko/stage-02-lv3.md';
+import l3 from '../../content/ko/stage-03-lv3.md';
+import l4 from '../../content/ko/stage-04-lv3.md';
 import s1ko from '../../content/ko/stage-01.md';
 import s1en from '../../content/en/stage-01.md';
 import s2ko from '../../content/ko/stage-02.md';
@@ -21,14 +26,14 @@ export const Stage00 = () => (
   <StagePage n={0} next={1} content={{ story: { ko: s0ko, en: s0en } }} graphics={{ teaser: <Teaser /> }} />
 );
 export const Stage01 = () => (
-  <StagePage n={1} prev={0} next={2} content={{ story: { ko: s1ko, en: s1en } }} graphics={{ sieve: <Sieve />, 'next-prime': <NextPrime /> }} />
+  <StagePage n={1} prev={0} next={2} content={{ story: { ko: s1ko, en: s1en }, lv3: { ko: l1, en: lv3en }, lv3Draft: true }} graphics={{ sieve: <Sieve />, 'next-prime': <NextPrime /> }} />
 );
 export const Stage02 = () => (
-  <StagePage n={2} prev={1} next={3} content={{ story: { ko: s2ko, en: s2en } }} graphics={{ 'zoom-graph': <ZoomGraph /> }} />
+  <StagePage n={2} prev={1} next={3} content={{ story: { ko: s2ko, en: s2en }, lv3: { ko: l2, en: lv3en }, lv3Draft: true }} graphics={{ 'zoom-graph': <ZoomGraph /> }} />
 );
 export const Stage03 = () => (
-  <StagePage n={3} prev={2} next={4} content={{ story: { ko: s3ko, en: s3en } }} graphics={{ 'complex-plane': <ComplexPlane /> }} />
+  <StagePage n={3} prev={2} next={4} content={{ story: { ko: s3ko, en: s3en }, lv3: { ko: l3, en: lv3en }, lv3Draft: true }} graphics={{ 'complex-plane': <ComplexPlane /> }} />
 );
 export const Stage04 = () => (
-  <StagePage n={4} prev={3} next={5} content={{ story: { ko: s4ko, en: s4en } }} graphics={{ 'partial-sums': <PartialSums /> }} />
+  <StagePage n={4} prev={3} next={5} content={{ story: { ko: s4ko, en: s4en }, lv3: { ko: l4, en: lv3en }, lv3Draft: true }} graphics={{ 'partial-sums': <PartialSums /> }} />
 );

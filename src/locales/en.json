@@ -31,7 +31,8 @@
     "lv3": "Formula",
     "lv4": "Deep dive",
     "lv4Soon": "Proof sketches, code and references are coming.",
-    "lv3Soon": "Step-by-step derivations are coming (M4)."
+    "lv3Soon": "Step-by-step derivations are coming (M4).",
+    "draft": "Draft · not yet reviewed."
   },
   "explicit": {
     "title": "Explicit formula slider",
@@ -152,10 +153,21 @@
     "gue": "GUE matrices",
     "poisson": "Random points",
     "small": "Share of spacings < ¼: zeta {{zeta}}%, GUE {{gue}}%, random {{poisson}}%. Zeros repel each other.",
-    "nuclear": "Nuclear energy level data will be added after checking public sources."
+    "nuclear": "Instead of measured nuclear levels, we simulate the very model physicists built for heavy nuclei (GUE random matrices)."
   },
   "teaser": {
     "play": "Listen",
     "caption": "By the end of the journey, you will know what this sound is."
+  },
+  "ai": {
+    "title": "2026: two records",
+    "gaugeTitle": "① Share of zeros proven to lie on the critical line (lower bound)",
+    "gaugeNote": "Claude (Anthropic, Aug 2026): 41.6% → 67.2%. The Riemann hypothesis claims even more than filling this bar to 100%.",
+    "stripTitle": "② Width of the strip that traps the zeros",
+    "critical": "Critical strip 0–1 (Riemann, 1859)",
+    "q12": "1/12–11/12 (OpenAI v2, not yet formally verified)",
+    "q8": "1/8–7/8 (OpenAI v1, Lean-verified)",
+    "rh": "RH: the single line ½",
+    "stripNote": "The narrower the strip, the more we can say about primes. But no strip, however narrow, is a single line. One line remains out of reach."
   }
 }

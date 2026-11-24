@@ -9,6 +9,9 @@ type Layer = (typeof LAYERS)[number];
 export interface StageContent {
   story: Record<string, Segment[]>;
   lv3?: Record<string, Segment[]>;
+  lv4?: Record<string, Segment[]>;
+  /** Lv3 원고가 오너 검토 전 초안이면 true */
+  lv3Draft?: boolean;
 }
 
 interface Props {
@@ -25,6 +28,7 @@ export default function StagePage({ n, content, graphics, prev, next }: Props) {
   const [layer, setLayer] = useState<Layer>('lv1');
   const pick = (m?: Record<string, Segment[]>) => m && (m[i18n.language] ?? m.ko);
   const lv3 = pick(content.lv3);
+  const lv4 = pick(content.lv4);
 
   return (
     <article className="page stage">
@@ -56,17 +60,23 @@ export default function StagePage({ n, content, graphics, prev, next }: Props) {
       )}
       {layer === 'lv3' &&
         (lv3 ? (
-          <Prose segments={lv3} graphics={graphics} />
+          <>
+            {content.lv3Draft && <p className="draft-banner">{t('layer.draft')}</p>}
+            <Prose segments={lv3} graphics={graphics} />
+          </>
         ) : (
           <div className="prose">
             <p className="note">{t('layer.lv3Soon')}</p>
           </div>
         ))}
-      {layer === 'lv4' && (
-        <div className="prose">
-          <p className="note">{t('layer.lv4Soon')}</p>
-        </div>
-      )}
+      {layer === 'lv4' &&
+        (lv4 ? (
+          <Prose segments={lv4} graphics={graphics} />
+        ) : (
+          <div className="prose">
+            <p className="note">{t('layer.lv4Soon')}</p>
+          </div>
+        ))}
       <nav className="stage-nav">
         {prev !== undefined ? <Link to={`/stage/${prev}`}>← {t(`stages.${prev}`)}</Link> : <span />}
         {next !== undefined ? <Link to={`/stage/${next}`}>{t(`stages.${next}`)} →</Link> : <span />}

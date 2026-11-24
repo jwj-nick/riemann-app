@@ -27,10 +27,12 @@
   - `content/ko/stage-XX.md`는 `python3 scripts/split_story.py`로 `story-draft.md`에서 생성한다. 원고를 고친 뒤 다시 생성하고, 생성물은 직접 고치지 않는다.
   - `[그래픽:id]` 줄은 컴포넌트 자리(매핑은 `split_story.py`의 GRAPHICS), `**팩트체크**`·`**Junior 한 줄**` 단락과 `## 구현 메모` 이후는 빌드 시 제외(`scripts/vite-content-md.ts`).
 - Stage 6 Lv3 수식 원고: `content/ko/stage-06-lv3-derivation.md` (구현 메모 포함). 검증: `python3 scripts/verify_explicit_formula.py`
+- 그 외 Lv3 원고 `content/ko/stage-0X-lv3.md`는 AI 초안(앱에 "초안" 표시). 수치·항등식 검증: `python3 scripts/verify_lv3_drafts.py`
+- 2026 AI 사건(Stage 9) 원문 대조 기록: `docs/factcheck-stage9.md`
 - 원고의 [그래픽] 표시는 인터랙션 컴포넌트를 넣을 자리다.
 - 원고의 "팩트체크" 항목은 앱 화면에 내보내지 않는다. 검증 전 일화는 "전해진다" 표현을 유지한다.
 - AI 튜터는 힌트만 주고 답은 사용자가 말하게 한다(소크라테스식). 사전 작성된 유도가 정본이다.
 - 외부 이미지·영상은 쓰지 않는다. 그래픽은 전부 직접 생성한다.
 
 ## 마일스톤
-PRD 8장 참고. 완료: M1(스캐폴드·데이터·Stage 6), M2(Stage 1~4). 현재 목표: **M3 — Stage 5(제타 풍경), 7(제타 나선·가설이 틀린 세계), 8(간격 통계)**.
+PRD 8장 참고. 완료: M1(스캐폴드·데이터·Stage 6), M2(Stage 1~4), M3(Stage 5·7·8), M4 일부(Stage 0·9, Lv3 초안). 남은 M4: AI 튜터(정적 힌트), Lv4 심화, Lv3 초안 오너 검토 후 `lv3Draft` 해제. 이후 M5(Junior), M6(영어판·Manim).

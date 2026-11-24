@@ -160,3 +160,22 @@ h2 { font-size: 1.2rem; margin-top: 2em; }
 .canvas-wrap.square { aspect-ratio: 1; max-width: 360px; margin: 0 auto; }
 .play-big { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-size: 16px; padding: 10px 20px; border-radius: 999px; }
 .note.center { text-align: center; }
+.gauge { position: relative; height: 22px; border-radius: 6px; background: var(--grid); margin: 22px 0 8px; }
+.gauge-old, .gauge-new { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 6px; }
+.gauge-old { background: var(--muted); opacity: 0.5; z-index: 1; }
+.gauge-new { background: var(--accent); transition: width 1.6s ease-out; }
+.gauge-mark { position: absolute; top: -18px; transform: translateX(-50%); font-size: 11px; color: var(--muted); }
+.gauge-mark.new { color: var(--accent); font-weight: 700; }
+.gauge-end { position: absolute; right: 4px; top: 3px; font-size: 11px; color: var(--muted); }
+.strips { width: 100%; max-width: 420px; display: block; margin: 0 auto; }
+.strips text { fill: var(--muted); font-size: 11px; }
+.strip-0 { fill: var(--grid); }
+.strip-1 { fill: var(--prime); opacity: 0.35; }
+.strip-2 { fill: var(--accent); opacity: 0.5; }
+.rh-line { stroke: var(--danger); stroke-width: 2; stroke-dasharray: 5 4; }
+.strips-legend { gap: 6px; }
+.chip-btn, .chip-static { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; background: none; border: 1px solid var(--border); border-radius: 999px; padding: 2px 8px; color: var(--muted); }
+.chip-btn.on { color: var(--fg); }
+.swatch { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+.swatch.strip-0 { background: var(--grid); } .swatch.strip-1 { background: var(--prime); opacity: .6; } .swatch.strip-2 { background: var(--accent); opacity: .7; } .swatch.rh { background: var(--danger); }
+.draft-banner { background: color-mix(in srgb, var(--prime) 14%, transparent); border: 1px solid var(--prime); color: var(--fg); border-radius: 8px; padding: 8px 12px; font-size: 14px; margin: 12px 0; }

@@ -22,7 +22,6 @@ const HIDDEN = /^\*\*(팩트체크|Fact ?check|Junior[^*]*)\*\*/i;
 const GRAPHIC = /^\[(?:그래픽|graphic):([\w-]+)\][^\n]*$/;
 
 const PREDICT = /^\*\*(예측 질문|Predict)\*\*:\s*(.+?)\s*→\s*(?:기대 답:\s*)?(.+)$/s;
-const escapeHtml = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
 
 /**
  * - 첫 "## " 이전의 인용문(원고 메타 설명)과 "(원고 vX)" 표기 제거
@@ -46,7 +45,8 @@ export function preprocess(src: string, lang = 'ko'): string {
       if (!m) return p;
       const label = lang === 'ko' ? '먼저 생각해 보기' : 'Think first';
       const reveal = lang === 'ko' ? '답 보기' : 'Show answer';
-      return `<div class="predict"><p><b>${label}</b> ${escapeHtml(m[2])}</p><details><summary>${reveal}</summary>\n\n${m[3]}\n\n</details></div>`;
+      // 질문도 마크다운으로 처리(수식 포함 가능) — HTML 블록 사이에 빈 줄을 둔다
+      return `<div class="predict">\n\n**${label}** ${m[2]}\n\n<details><summary>${reveal}</summary>\n\n${m[3]}\n\n</details></div>`;
     })
     .join('\n\n');
 }

@@ -23,6 +23,7 @@ GRAPHICS = {
     6: ["explicit-formula", "prime-sound"],
     7: ["zeta-spiral", "off-line"],
     8: ["spacing"],
+    9: ["ai-results"],
 }
 
 

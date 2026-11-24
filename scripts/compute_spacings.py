@@ -48,7 +48,7 @@ def main() -> None:
     for k in ("zeta", "gue", "poisson"):
         a = np.array(data[k])
         print(f"{k}: n={len(a)} mean={a.mean():.3f} var={a.var():.3f} P(s<0.25)={np.mean(a < 0.25):.3f}")
-    print("기대: GUE var≈0.178, P(s<0.25)≈0.014 / 포아송 var≈1, P(s<0.25)≈0.221")
+    print("기대(위그너 근사): GUE var≈0.178, P(s<0.25)≈0.016 / 포아송 var≈1, P(s<0.25)≈0.221")
 
 
 if __name__ == "__main__":

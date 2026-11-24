@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import Home from './pages/Home';
 import Stage06 from './stages/Stage06';
 import { Stage00, Stage01, Stage02, Stage03, Stage04 } from './stages/basic';
-import { Stage05, Stage07, Stage08 } from './stages/advanced';
+import { Stage05, Stage07, Stage08, Stage09 } from './stages/advanced';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -39,6 +39,7 @@ export default function App() {
           <Route path="/stage/6" element={<Stage06 />} />
           <Route path="/stage/7" element={<Stage07 />} />
           <Route path="/stage/8" element={<Stage08 />} />
+          <Route path="/stage/9" element={<Stage09 />} />
           <Route path="*" element={<Home />} />
         </Routes>
       </main>

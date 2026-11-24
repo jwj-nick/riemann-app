@@ -1,4 +1,4 @@
-/** Stage 5, 7, 8 (M3: 풍경·나선·통계) */
+/** Stage 5, 7, 8 (M3: 풍경·나선·통계), Stage 9 (M4) */
 import { useState } from 'react';
 import StagePage from './StagePage';
 import ZetaLandscape from '../components/viz/ZetaLandscape';
@@ -6,6 +6,15 @@ import ZetaSpiral from '../components/viz/ZetaSpiral';
 import OffLineWorld from '../components/viz/OffLineWorld';
 import PrimeSound from '../components/viz/PrimeSound';
 import SpacingHistogram from '../components/viz/SpacingHistogram';
+import AiResults from '../components/viz/AiResults';
+import s9ko from '../../content/ko/stage-09.md';
+import s9en from '../../content/en/stage-09.md';
+import s9lv4ko from '../../content/ko/stage-09-lv4.md';
+import s9lv4en from '../../content/en/stage-09-lv4.md';
+import lv3en from '../../content/en/lv3-pending.md';
+import l5 from '../../content/ko/stage-05-lv3.md';
+import l7 from '../../content/ko/stage-07-lv3.md';
+import l8 from '../../content/ko/stage-08-lv3.md';
 import s5ko from '../../content/ko/stage-05.md';
 import s5en from '../../content/en/stage-05.md';
 import s7ko from '../../content/ko/stage-07.md';
@@ -14,7 +23,7 @@ import s8ko from '../../content/ko/stage-08.md';
 import s8en from '../../content/en/stage-08.md';
 
 export const Stage05 = () => (
-  <StagePage n={5} prev={4} next={6} content={{ story: { ko: s5ko, en: s5en } }} graphics={{ 'zeta-landscape': <ZetaLandscape /> }} />
+  <StagePage n={5} prev={4} next={6} content={{ story: { ko: s5ko, en: s5en }, lv3: { ko: l5, en: lv3en }, lv3Draft: true }} graphics={{ 'zeta-landscape': <ZetaLandscape /> }} />
 );
 
 export function Stage07() {
@@ -24,7 +33,7 @@ export function Stage07() {
       n={7}
       prev={6}
       next={8}
-      content={{ story: { ko: s7ko, en: s7en } }}
+      content={{ story: { ko: s7ko, en: s7en }, lv3: { ko: l7, en: lv3en }, lv3Draft: true }}
       graphics={{
         'zeta-spiral': <ZetaSpiral />,
         'off-line': (
@@ -39,5 +48,14 @@ export function Stage07() {
 }
 
 export const Stage08 = () => (
-  <StagePage n={8} prev={7} content={{ story: { ko: s8ko, en: s8en } }} graphics={{ spacing: <SpacingHistogram /> }} />
+  <StagePage n={8} prev={7} next={9} content={{ story: { ko: s8ko, en: s8en }, lv3: { ko: l8, en: lv3en }, lv3Draft: true }} graphics={{ spacing: <SpacingHistogram /> }} />
+);
+
+export const Stage09 = () => (
+  <StagePage
+    n={9}
+    prev={8}
+    content={{ story: { ko: s9ko, en: s9en }, lv4: { ko: s9lv4ko, en: s9lv4en } }}
+    graphics={{ 'ai-results': <AiResults /> }}
+  />
 );
