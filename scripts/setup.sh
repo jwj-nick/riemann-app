@@ -7,4 +7,4 @@ if [ -f package.json ]; then
   npm ci || npm install
 fi
 
-pip install --quiet mpmath numpy endf 2>/dev/null || pip install --quiet --break-system-packages mpmath numpy endf
+pip install --quiet mpmath numpy endf sympy 2>/dev/null || pip install --quiet --break-system-packages mpmath numpy endf sympy

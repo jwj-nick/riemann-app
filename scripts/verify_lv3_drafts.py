@@ -67,6 +67,9 @@ sp = json.loads((D / "spacings.json").read_text())
 nuc = sp.get("nuclear", [])
 check("S8 우라늄 P(s<¼) ≈ 4.9%", nuc and abs(sum(v < 0.25 for v in nuc) / len(nuc) - 0.049) < 0.005, f"n={len(nuc)}")
 
+Lam = lambda z: pi ** (-z / 2) * gamma(z / 2) * zeta(z)
+check("Lv4 S5 Λ(s) = Λ(1−s)", abs(Lam(mpf("0.3") + 4.1j) - Lam(1 - (mpf("0.3") + 4.1j))) < 1e-15)
+
 for name, ok, detail in checks:
     print(("PASS " if ok else "FAIL ") + name + (f"  ({detail})" if detail else ""))
 bad = [c for c in checks if not c[1]]

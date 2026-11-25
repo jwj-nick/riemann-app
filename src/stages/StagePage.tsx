@@ -13,6 +13,7 @@ export interface StageContent {
   lv4?: Record<string, Segment[]>;
   /** Lv3 원고가 오너 검토 전 초안이면 true */
   lv3Draft?: boolean;
+  lv4Draft?: boolean;
 }
 
 interface Props {
@@ -75,7 +76,10 @@ export default function StagePage({ n, content, graphics, prev, next }: Props) {
         ))}
       {layer === 'lv4' &&
         (lv4 ? (
-          <Prose segments={lv4} graphics={graphics} />
+          <>
+            {content.lv4Draft && <p className="draft-banner">{t('layer.draft')}</p>}
+            <Prose segments={lv4} graphics={graphics} />
+          </>
         ) : (
           <div className="prose">
             <p className="note">{t('layer.lv4Soon')}</p>

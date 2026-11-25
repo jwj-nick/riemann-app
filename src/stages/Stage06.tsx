@@ -6,6 +6,8 @@ import storyKo from '../../content/ko/stage-06.md';
 import storyEn from '../../content/en/stage-06.md';
 import lv3Ko from '../../content/ko/stage-06-lv3-derivation.md';
 import lv3En from '../../content/en/stage-06-lv3.md';
+import lv4Ko from '../../content/ko/stage-06-lv4.md';
+import lv4En from '../../content/en/lv4-pending.md';
 
 export default function Stage06() {
   const [beta, setBeta] = useState(0.5); // 영점 1의 실수부, 슬라이더·소리 공유
@@ -14,7 +16,7 @@ export default function Stage06() {
       n={6}
       prev={5}
       next={7}
-      content={{ story: { ko: storyKo, en: storyEn }, lv3: { ko: lv3Ko, en: lv3En } }}
+      content={{ story: { ko: storyKo, en: storyEn }, lv3: { ko: lv3Ko, en: lv3En }, lv4: { ko: lv4Ko, en: lv4En }, lv4Draft: true }}
       graphics={{
         'explicit-formula': <ExplicitFormula beta={beta} />,
         'prime-sound': <PrimeSound beta={beta} onBeta={setBeta} />,

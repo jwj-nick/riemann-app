@@ -28,11 +28,14 @@
   - `[그래픽:id]` 줄은 컴포넌트 자리(매핑은 `split_story.py`의 GRAPHICS), `**팩트체크**`·`**Junior 한 줄**` 단락과 `## 구현 메모` 이후는 빌드 시 제외(`scripts/vite-content-md.ts`).
 - Stage 6 Lv3 수식 원고: `content/ko/stage-06-lv3-derivation.md` (구현 메모 포함). 검증: `python3 scripts/verify_explicit_formula.py`
 - 그 외 Lv3 원고 `content/ko/stage-0X-lv3.md`는 AI 초안(앱에 "초안" 표시). 수치·항등식 검증: `python3 scripts/verify_lv3_drafts.py`
+- Lv4 원고 `content/ko/stage-0X-lv4.md`(AI 초안, "초안" 표시). 코드 블록 실행 검증: `python3 scripts/verify_lv4_code.py`
+- 예측 질문 형식: `**예측 질문**: "질문" → 답` + 같은 단락 끝 줄 `**힌트**: h1 || h2` (AI 튜터, 힌트→답 순서로만 열림)
 - 2026 AI 사건(Stage 9) 원문 대조 기록: `docs/factcheck-stage9.md`
+- Stage 8 원자핵 데이터: `python3 scripts/compute_nuclear.py` (JEFF-3.3 U-238, GOE)
 - 원고의 [그래픽] 표시는 인터랙션 컴포넌트를 넣을 자리다.
 - 원고의 "팩트체크" 항목은 앱 화면에 내보내지 않는다. 검증 전 일화는 "전해진다" 표현을 유지한다.
 - AI 튜터는 힌트만 주고 답은 사용자가 말하게 한다(소크라테스식). 사전 작성된 유도가 정본이다.
 - 외부 이미지·영상은 쓰지 않는다. 그래픽은 전부 직접 생성한다.
 
 ## 마일스톤
-PRD 8장 참고. 완료: M1(스캐폴드·데이터·Stage 6), M2(Stage 1~4), M3(Stage 5·7·8), M4 일부(Stage 0·9, Lv3 초안). 남은 M4: AI 튜터(정적 힌트), Lv4 심화, Lv3 초안 오너 검토 후 `lv3Draft` 해제. 이후 M5(Junior), M6(영어판·Manim).
+PRD 8장 참고. 완료: M1(스캐폴드·데이터·Stage 6), M2(Stage 1~4), M3(Stage 5·7·8), M4 일부(Stage 0·9, Lv3 초안). M4: AI 튜터(정적 힌트)·Lv4·진행 저장 완료, 남은 것은 Lv3/Lv4 초안 오너 검토 후 `lv3Draft`/`lv4Draft` 해제. 이후 M5(Junior), M6(영어판·Manim).
