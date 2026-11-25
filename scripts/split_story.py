@@ -1,4 +1,4 @@
-"""정본 원고(content/ko/story-draft.md)에서 스테이지별 content/ko/stage-XX.md 를 만든다.
+"""정본 원고(content/{ko,en}/story-draft.md)에서 스테이지별 content/{lang}/stage-XX.md 를 만든다.
 
 사용: python3 scripts/split_story.py
 - "## Stage N · 제목" → "# 제목"
@@ -10,7 +10,6 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SRC = ROOT / "content" / "ko" / "story-draft.md"
 
 # 스테이지별 [그래픽] 자리 → 컴포넌트 id (원고 등장 순서)
 GRAPHICS = {
@@ -27,8 +26,11 @@ GRAPHICS = {
 }
 
 
-def main() -> None:
-    text = SRC.read_text()
+def split(lang: str, marker: str, tag: str) -> None:
+    src = ROOT / "content" / lang / "story-draft.md"
+    if not src.exists():
+        return
+    text = src.read_text()
     parts = re.split(r"^## Stage (\d+) · ", text, flags=re.M)
     for i in range(1, len(parts), 2):
         n = int(parts[i])
@@ -38,18 +40,23 @@ def main() -> None:
         body = re.split(r"^## ", body, flags=re.M)[0].rstrip() + "\n"
         ids = iter(GRAPHICS[n])
 
-        def tag(m: re.Match) -> str:
+        def sub(m: re.Match) -> str:
             gid = next(ids, None)
-            return f"[그래픽:{gid}]{m.group(1)}" if gid else ""
+            return f"[{tag}:{gid}]{m.group(1)}" if gid else ""
 
-        body = re.sub(r"^\[그래픽\]([^\n]*)$", tag, body, flags=re.M)
+        body = re.sub(rf"^\[{marker}\]([^\n]*)$", sub, body, flags=re.M)
         header = (
             f"# {body.splitlines()[0]}\n\n"
-            f"<!-- 자동 생성: scripts/split_story.py ← content/ko/story-draft.md Stage {n}. 직접 고치지 말고 원고를 고친 뒤 다시 생성. -->\n"
+            f"<!-- 자동 생성: scripts/split_story.py ← content/{lang}/story-draft.md Stage {n}. 직접 고치지 말고 원고를 고친 뒤 다시 생성. -->\n"
         )
         out = header + "\n".join(body.splitlines()[1:]).rstrip() + "\n"
-        (ROOT / "content" / "ko" / f"stage-{n:02d}.md").write_text(out)
-        print("wrote", f"content/ko/stage-{n:02d}.md")
+        (ROOT / "content" / lang / f"stage-{n:02d}.md").write_text(out)
+        print("wrote", f"content/{lang}/stage-{n:02d}.md")
+
+
+def main() -> None:
+    split("ko", "그래픽", "그래픽")
+    split("en", "Graphic", "graphic")
 
 
 if __name__ == "__main__":
