@@ -102,7 +102,10 @@
     "errPi": "π(x) − x/ln x",
     "errLi": "π(x) − Li(x)",
     "readout": "x = {{x}}: π = {{pi}}, x/ln x ≈ {{xl}}, Li ≈ {{li}}",
-    "ratio": "π(x) ÷ (x/ln x) = {{r}}"
+    "ratio": "π(x) ÷ (x/ln x) = {{r}}",
+    "liOnly": "Zoom on π − Li",
+    "errLiOnly": "π(x) − li(x)",
+    "rhBound": "Bound if RH holds: ±√x·ln x/8π"
   },
   "complex": {
     "title": "Complex plane playground",
@@ -175,5 +178,12 @@
     "q8": "1/8–7/8 (OpenAI v1, Lean-verified)",
     "rh": "RH: the single line ½",
     "stripNote": "The narrower the strip, the more we can say about primes. But no strip, however narrow, is a single line. One line remains out of reach."
+  },
+  "eulerSieve": {
+    "title": "Euler's sieve: pulling primes out of a sum",
+    "next": "× (1 − 1/{{p}}²)",
+    "all": "All primes ≤ 1000",
+    "explain": "Multiplying by (1 − 1/{{p}}²) removes every term divisible by {{p}}. What remains is the sum over numbers not yet removed.",
+    "done": "After {{n}} primes only about 1/1² is left: ζ(2) × ∏(1 − 1/p²) → 1, so ζ(2) = ∏ 1/(1 − 1/p²)."
   }
 }

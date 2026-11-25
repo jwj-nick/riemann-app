@@ -6,6 +6,7 @@ import NextPrime from '../components/viz/NextPrime';
 import ZoomGraph from '../components/viz/ZoomGraph';
 import ComplexPlane from '../components/viz/ComplexPlane';
 import PartialSums from '../components/viz/PartialSums';
+import EulerSieve from '../components/viz/EulerSieve';
 import s0ko from '../../content/ko/stage-00.md';
 import s0en from '../../content/en/stage-00.md';
 import lv4en from '../../content/en/lv4-pending.md';
@@ -41,5 +42,5 @@ export const Stage03 = () => (
   <StagePage n={3} prev={2} next={4} content={{ story: { ko: s3ko, en: s3en }, lv3: { ko: l3, en: lv3en }, lv3Draft: true, lv4: { ko: d3, en: lv4en }, lv4Draft: true }} graphics={{ 'complex-plane': <ComplexPlane /> }} />
 );
 export const Stage04 = () => (
-  <StagePage n={4} prev={3} next={5} content={{ story: { ko: s4ko, en: s4en }, lv3: { ko: l4, en: lv3en }, lv3Draft: true, lv4: { ko: d4, en: lv4en }, lv4Draft: true }} graphics={{ 'partial-sums': <PartialSums /> }} />
+  <StagePage n={4} prev={3} next={5} content={{ story: { ko: s4ko, en: s4en }, lv3: { ko: l4, en: lv3en }, lv3Draft: true, lv4: { ko: d4, en: lv4en }, lv4Draft: true }} graphics={{ 'partial-sums': <PartialSums />, 'euler-sieve': <EulerSieve /> }} />
 );

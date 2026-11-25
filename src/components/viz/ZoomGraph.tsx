@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Li } from '../../lib/primes';
+import { Li, li } from '../../lib/primes';
 import { usePiData, type PiData } from '../../lib/data';
 import { useCanvas, readVar } from './useCanvas';
 
@@ -36,6 +36,7 @@ export default function ZoomGraph() {
   const { data, error } = usePiData();
   const [e, setE] = useState(2);
   const [showErr, setShowErr] = useState(false);
+  const [liOnly, setLiOnly] = useState(false);
   const xmax = 10 ** e;
   const fmt = useMemo(() => new Intl.NumberFormat(i18n.language, { notation: 'compact', maximumSignificantDigits: 3 }), [i18n.language]);
   const fmtInt = useMemo(() => new Intl.NumberFormat(i18n.language, { maximumFractionDigits: 0 }), [i18n.language]);
@@ -45,7 +46,7 @@ export default function ZoomGraph() {
   const xr = s ? Math.max(2, s.xs[s.xs.length - 1]) : xmax;
   const piAt = s ? s.ys[s.ys.length - 1] : 0;
   const xl = xr / Math.log(xr);
-  const li = Li(xr);
+  const liVal = Li(xr);
 
   const canvasRef = useCanvas(
     (ctx, w, h) => {
@@ -66,6 +67,16 @@ export default function ZoomGraph() {
           { xs: curveXs, ys: curveXs.map((x) => x / Math.log(x)), color: c.p, width: 1.5, dash: [5, 4] },
           { xs: curveXs, ys: curveXs.map(Li), color: c.a, width: 1.5 },
           { xs: s.xs, ys: s.ys, color: c.fg, width: 2 },
+        ];
+      } else if (liOnly) {
+        // π(x) − li(x) 와, 리만 가설 아래 쇤펠트(1976) 한계 ±√x·ln x/(8π) (x ≥ 2657)
+        const pts = s.xs.map((x, i) => [x, s.ys[i]]).filter(([x]) => x >= X0);
+        const bx = curveXs.filter((x) => x >= 2657);
+        const bound = (x: number) => (Math.sqrt(x) * Math.log(x)) / (8 * Math.PI);
+        series = [
+          { xs: bx, ys: bx.map(bound), color: c.text, width: 1, dash: [3, 3] },
+          { xs: bx, ys: bx.map((x) => -bound(x)), color: c.text, width: 1, dash: [3, 3] },
+          { xs: pts.map((p) => p[0]), ys: pts.map(([x, y]) => y - li(x)), color: c.a, width: 1.5 },
         ];
       } else {
         const pts = s.xs.map((x, i) => [x, s.ys[i]]).filter(([x]) => x >= X0);
@@ -127,7 +138,7 @@ export default function ZoomGraph() {
       }
       ctx.restore();
     },
-    [s, showErr, xmax, fmt],
+    [s, showErr, liOnly, xmax, fmt],
   );
 
   return (
@@ -141,7 +152,12 @@ export default function ZoomGraph() {
         {!data && <div className="overlay">{error ? t('explicit.error') : t('explicit.loading')}</div>}
       </div>
       <div className="legend">
-        {showErr ? (
+        {showErr && liOnly ? (
+          <>
+            <span className="sw accent" /> {t('zoom.errLiOnly')}
+            <span className="sw dashed" /> {t('zoom.rhBound')}
+          </>
+        ) : showErr ? (
           <>
             <span className="sw prime" /> {t('zoom.errPi')}
             <span className="sw accent" /> {t('zoom.errLi')}
@@ -168,6 +184,11 @@ export default function ZoomGraph() {
         <label className="toggle">
           <input type="checkbox" checked={showErr} onChange={(ev) => setShowErr(ev.target.checked)} /> {t('zoom.error')}
         </label>
+        {showErr && (
+          <label className="toggle">
+            <input type="checkbox" checked={liOnly} onChange={(ev) => setLiOnly(ev.target.checked)} /> {t('zoom.liOnly')}
+          </label>
+        )}
         <span className="seg" role="group">
           {[2, 4, 6, 9].map((v) => (
             <button key={v} className={Math.abs(e - v) < 0.005 ? 'on' : ''} onClick={() => setE(v)}>
@@ -178,7 +199,7 @@ export default function ZoomGraph() {
       </div>
       {data && (
         <p className="note">
-          {t('zoom.readout', { x: fmtInt.format(Math.floor(xr)), pi: fmtInt.format(piAt), xl: fmtInt.format(xl), li: fmtInt.format(li) })}
+          {t('zoom.readout', { x: fmtInt.format(Math.floor(xr)), pi: fmtInt.format(piAt), xl: fmtInt.format(xl), li: fmtInt.format(liVal) })}
           <br />
           {t('zoom.ratio', { r: (piAt / xl).toFixed(4) })}
         </p>

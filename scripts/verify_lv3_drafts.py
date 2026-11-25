@@ -22,7 +22,8 @@ check("S1 30031 = 59·509", 2 * 3 * 5 * 7 * 11 * 13 + 1 == 30031 == 59 * 509)
 check("S1 √120 이하 소수 = 2,3,5,7", [p for p in range(2, 11) if all(p % q for q in range(2, p))] == [2, 3, 5, 7])
 # Stage 2
 check("S2 ln10 ≈ 2.303", abs(math.log(10) - 2.303) < 5e-4, f"{math.log(10):.4f}")
-pi_x = json.loads((D / "pi_x.json").read_text())["pi"]
+pi_full = json.loads((D / "pi_x.json").read_text())
+pi_x = pi_full["pi"]
 Li = lambda x: li(x) - li(2)
 for e, xl, L in [(6, 72382, 78627), (9, 48254942, 50849234)]:
     x = 10**e
@@ -69,6 +70,20 @@ check("S8 우라늄 P(s<¼) ≈ 4.9%", nuc and abs(sum(v < 0.25 for v in nuc) / 
 
 Lam = lambda z: pi ** (-z / 2) * gamma(z / 2) * zeta(z)
 check("Lv4 S5 Λ(s) = Λ(1−s)", abs(Lam(mpf("0.3") + 4.1j) - Lam(1 - (mpf("0.3") + 4.1j))) < 1e-15)
+
+viol = 0
+for dd, gr in pi_full["grids"].items():
+    for kk in range(1, pi_full["gridN"] + 1):
+        x = kk * 10 ** int(dd) // pi_full["gridN"]
+        if x >= 2657 and abs(gr[kk] - float(li(x))) > math.sqrt(x) * math.log(x) / (8 * math.pi):
+            viol += 1
+check("S2 쇤펠트 한계 |π−li| < √x·ln x/8π (격자 전부)", viol == 0, f"위반 {viol}")
+s4 = mpf(2)
+from sympy import primerange
+prod = 1.0
+for p_ in primerange(2, 1001):
+    prod *= 1 - p_**-2
+check("S4 오일러의 체: ζ(2)·∏_{p≤1000}(1−p⁻²) ≈ 1", abs(float(zeta(2)) * prod - 1) < 2e-4, f"{float(zeta(2)) * prod:.6f}")
 
 for name, ok, detail in checks:
     print(("PASS " if ok else "FAIL ") + name + (f"  ({detail})" if detail else ""))
