@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { HashRouter, Link, Route, Routes, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Home from './pages/Home';
+import Glossary from './pages/Glossary';
 import { setEdition, useEdition } from './lib/edition';
 import Stage06 from './stages/Stage06';
 import { Stage00, Stage01, Stage02, Stage03, Stage04 } from './stages/basic';
@@ -26,6 +27,9 @@ export default function App() {
           {t('app.title')}
         </Link>
         <span className="top-actions">
+          <Link to="/glossary" className="ghost">
+            {t('nav.glossary')}
+          </Link>
           <button className={`ghost${edition === 'junior' ? ' on' : ''}`} onClick={() => setEdition(edition === 'junior' ? 'standard' : 'junior')}>
             {edition === 'junior' ? t('nav.junior') : t('nav.standard')}
           </button>
@@ -37,6 +41,7 @@ export default function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/glossary" element={<Glossary />} />
           <Route path="/stage/0" element={<Stage00 />} />
           <Route path="/stage/1" element={<Stage01 />} />
           <Route path="/stage/2" element={<Stage02 />} />

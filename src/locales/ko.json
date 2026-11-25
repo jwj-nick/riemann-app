@@ -8,7 +8,9 @@
     "home": "처음으로",
     "lang": "English",
     "junior": "주니어",
-    "standard": "일반판"
+    "standard": "일반판",
+    "glossary": "용어",
+    "glossaryHint": "모르는 용어가 나오면 → 용어 사전"
   },
   "home": {
     "intro": "소수를 잊은 어른을 위한 리만 가설 여행. 각 스테이지는 이야기 → 직관 → 수식 → 심화, 원하는 깊이로 골라 읽습니다.",

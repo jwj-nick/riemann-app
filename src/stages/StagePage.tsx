@@ -14,6 +14,8 @@ export interface StageContent {
   junior?: Record<string, Segment[]>;
   lv3?: Record<string, Segment[]>;
   lv4?: Record<string, Segment[]>;
+  /** 직관 탭 해설(그래픽 자리 포함). 없으면 그래픽만 나열 */
+  lv2?: Record<string, Segment[]>;
   /** Lv3 원고가 오너 검토 전 초안이면 true */
   lv3Draft?: boolean;
   lv4Draft?: boolean;
@@ -36,6 +38,7 @@ export default function StagePage({ n, content, graphics, prev, next }: Props) {
   const story = (edition === 'junior' && content.junior?.[i18n.language]) || pick(content.story)!;
   const lv3 = pick(content.lv3);
   const lv4 = pick(content.lv4);
+  const lv2 = content.lv2?.[i18n.language];
   useEffect(() => {
     markSeen(n, layer);
   }, [n, layer]);
@@ -62,15 +65,36 @@ export default function StagePage({ n, content, graphics, prev, next }: Props) {
           </button>
         ))}
       </nav>
-      {layer === 'lv1' && <Prose segments={story} graphics={graphics} />}
-      {layer === 'lv2' && (
-        <div className="prose">
-          <h1>{t(`stages.${n}`)}</h1>
-          {Object.entries(graphics).map(([id, g]) => (
-            <div key={id}>{g}</div>
-          ))}
-        </div>
+      {(layer === 'lv2' || layer === 'lv3') && (
+        <p className="note glossary-hint">
+          <Link to="/glossary">{t('nav.glossaryHint')}</Link>
+        </p>
       )}
+      {layer === 'lv1' && <Prose segments={story} graphics={graphics} />}
+      {layer === 'lv2' &&
+        (lv2 ? (
+          <>
+            <div className="prose">
+              <h1>{t(`stages.${n}`)}</h1>
+            </div>
+            <Prose segments={lv2} graphics={graphics} />
+            {/* 해설에 자리가 없는 그래픽은 끝에 붙인다 */}
+            <div className="prose">
+              {Object.entries(graphics)
+                .filter(([id]) => !lv2.some((sg) => 'graphic' in sg && sg.graphic === id))
+                .map(([id, g]) => (
+                  <div key={id}>{g}</div>
+                ))}
+            </div>
+          </>
+        ) : (
+          <div className="prose">
+            <h1>{t(`stages.${n}`)}</h1>
+            {Object.entries(graphics).map(([id, g]) => (
+              <div key={id}>{g}</div>
+            ))}
+          </div>
+        ))}
       {layer === 'lv3' &&
         (lv3 ? (
           <>

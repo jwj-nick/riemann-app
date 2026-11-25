@@ -1,5 +1,10 @@
 /** Stage 0~4 (M2: 기초 그래픽, M4: 프롤로그) */
 import StagePage from './StagePage';
+import x0 from '../../content/ko/lv2/stage-00.md';
+import x1 from '../../content/ko/lv2/stage-01.md';
+import x2 from '../../content/ko/lv2/stage-02.md';
+import x3 from '../../content/ko/lv2/stage-03.md';
+import x4 from '../../content/ko/lv2/stage-04.md';
 import j0 from '../../content/ko/junior/stage-00.md';
 import j1 from '../../content/ko/junior/stage-01.md';
 import j2 from '../../content/ko/junior/stage-02.md';
@@ -42,17 +47,17 @@ import s4ko from '../../content/ko/stage-04.md';
 import s4en from '../../content/en/stage-04.md';
 
 export const Stage00 = () => (
-  <StagePage n={0} next={1} content={{ story: { ko: s0ko, en: s0en }, junior: { ko: j0 }, lv4: { ko: d0, en: f0 }, lv4Draft: true }} graphics={{ teaser: <Teaser /> }} />
+  <StagePage n={0} next={1} content={{ lv2: { ko: x0 }, story: { ko: s0ko, en: s0en }, junior: { ko: j0 }, lv4: { ko: d0, en: f0 }, lv4Draft: true }} graphics={{ teaser: <Teaser /> }} />
 );
 export const Stage01 = () => (
-  <StagePage n={1} prev={0} next={2} content={{ story: { ko: s1ko, en: s1en }, junior: { ko: j1 }, lv3: { ko: l1, en: e1 }, lv3Draft: true, lv4: { ko: d1, en: f1 }, lv4Draft: true }} graphics={{ sieve: <Sieve />, 'next-prime': <NextPrime /> }} />
+  <StagePage n={1} prev={0} next={2} content={{ lv2: { ko: x1 }, story: { ko: s1ko, en: s1en }, junior: { ko: j1 }, lv3: { ko: l1, en: e1 }, lv3Draft: true, lv4: { ko: d1, en: f1 }, lv4Draft: true }} graphics={{ sieve: <Sieve />, 'next-prime': <NextPrime /> }} />
 );
 export const Stage02 = () => (
-  <StagePage n={2} prev={1} next={3} content={{ story: { ko: s2ko, en: s2en }, junior: { ko: j2 }, lv3: { ko: l2, en: e2 }, lv3Draft: true, lv4: { ko: d2, en: f2 }, lv4Draft: true }} graphics={{ 'zoom-graph': <ZoomGraph /> }} />
+  <StagePage n={2} prev={1} next={3} content={{ lv2: { ko: x2 }, story: { ko: s2ko, en: s2en }, junior: { ko: j2 }, lv3: { ko: l2, en: e2 }, lv3Draft: true, lv4: { ko: d2, en: f2 }, lv4Draft: true }} graphics={{ 'zoom-graph': <ZoomGraph /> }} />
 );
 export const Stage03 = () => (
-  <StagePage n={3} prev={2} next={4} content={{ story: { ko: s3ko, en: s3en }, junior: { ko: j3 }, lv3: { ko: l3, en: e3 }, lv3Draft: true, lv4: { ko: d3, en: f3 }, lv4Draft: true }} graphics={{ 'complex-plane': <ComplexPlane /> }} />
+  <StagePage n={3} prev={2} next={4} content={{ lv2: { ko: x3 }, story: { ko: s3ko, en: s3en }, junior: { ko: j3 }, lv3: { ko: l3, en: e3 }, lv3Draft: true, lv4: { ko: d3, en: f3 }, lv4Draft: true }} graphics={{ 'complex-plane': <ComplexPlane /> }} />
 );
 export const Stage04 = () => (
-  <StagePage n={4} prev={3} next={5} content={{ story: { ko: s4ko, en: s4en }, junior: { ko: j4 }, lv3: { ko: l4, en: e4 }, lv3Draft: true, lv4: { ko: d4, en: f4 }, lv4Draft: true }} graphics={{ 'partial-sums': <PartialSums />, 'euler-sieve': <EulerSieve /> }} />
+  <StagePage n={4} prev={3} next={5} content={{ lv2: { ko: x4 }, story: { ko: s4ko, en: s4en }, junior: { ko: j4 }, lv3: { ko: l4, en: e4 }, lv3Draft: true, lv4: { ko: d4, en: f4 }, lv4Draft: true }} graphics={{ 'partial-sums': <PartialSums />, 'euler-sieve': <EulerSieve /> }} />
 );

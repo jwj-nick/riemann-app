@@ -8,7 +8,9 @@
     "home": "Home",
     "lang": "한국어",
     "junior": "Junior",
-    "standard": "Standard"
+    "standard": "Standard",
+    "glossary": "Terms",
+    "glossaryHint": "Unfamiliar term? → Glossary"
   },
   "home": {
     "intro": "A journey to the Riemann Hypothesis for adults who forgot about primes. Each stage offers story → intuition → formula → deep dive.",

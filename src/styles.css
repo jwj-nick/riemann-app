@@ -202,3 +202,7 @@ h2 { font-size: 1.2rem; margin-top: 2em; }
 .checklist li { padding: 6px 0; border-bottom: 1px solid var(--border); }
 .checklist li.done span { color: var(--ok); font-weight: 700; }
 .checklist li.pending { color: var(--muted); }
+a.ghost { text-decoration: none; color: var(--fg); display: inline-flex; align-items: center; }
+.glossary-hint { margin: 4px 0 0; }
+.glossary h2 { font-size: 1.05rem; margin-top: 1.4em; color: var(--accent); }
+.prose details > summary { margin: 0.4em 0; }
