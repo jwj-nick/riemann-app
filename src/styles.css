@@ -191,3 +191,10 @@ h2 { font-size: 1.2rem; margin-top: 2em; }
 .prose li { margin: 0.3em 0; }
 .sieve-grid .cell.term { font-size: 10px; display: grid; place-items: center; }
 .note.formula { font-variant-numeric: tabular-nums; overflow-x: auto; white-space: nowrap; }
+.top-actions { display: inline-flex; gap: 6px; }
+.ghost.on { background: var(--prime); border-color: var(--prime); color: #fff; }
+.badge.junior { margin-left: 8px; border-color: var(--prime); color: var(--prime); }
+.badges { margin: 12px 0; }
+.badge-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+.prime-badge { width: 29px; height: 29px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 13px; border: 2px dashed var(--border); color: var(--muted); }
+.prime-badge.got { border: 2px solid var(--prime); background: var(--prime); color: #fff; }

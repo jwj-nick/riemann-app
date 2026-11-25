@@ -57,6 +57,7 @@ def split(lang: str, marker: str, tag: str) -> None:
 def main() -> None:
     split("ko", "그래픽", "그래픽")
     split("en", "Graphic", "graphic")
+    split("ko/junior", "그래픽", "그래픽")
 
 
 if __name__ == "__main__":

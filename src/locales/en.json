@@ -6,7 +6,9 @@
   },
   "nav": {
     "home": "Home",
-    "lang": "한국어"
+    "lang": "한국어",
+    "junior": "Junior",
+    "standard": "Standard"
   },
   "home": {
     "intro": "A journey to the Riemann Hypothesis for adults who forgot about primes. Each stage offers story → intuition → formula → deep dive.",
@@ -14,7 +16,9 @@
     "start": "Open",
     "resume": "Continue Stage {{n}}",
     "visited": "{{n}} of 10 stages visited",
-    "reset": "Clear progress"
+    "reset": "Clear progress",
+    "introJunior": "A quest toward the million-dollar Riemann hypothesis! Collect a prime badge for every stage you clear, in any order.",
+    "badges": "Prime badges {{n}}/10"
   },
   "stages": {
     "0": "Prologue",
@@ -80,7 +84,10 @@
     "found": "{{count}} primes found",
     "sqrtDone": "{{p}}² = {{sq}} > {{n}}. Everything left is prime. Why?",
     "finishAll": "Mark the rest as prime",
-    "done": "Done! There are {{count}} primes up to {{n}}."
+    "done": "Done! There are {{count}} primes up to {{n}}.",
+    "time": "⏱ {{s}} s",
+    "best": "Best {{s}} s",
+    "newBest": "New record! {{s}} s"
   },
   "nextPrime": {
     "title": "Guess the next prime",

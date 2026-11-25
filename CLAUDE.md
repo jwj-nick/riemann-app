@@ -23,8 +23,8 @@
 - 수치 데이터는 `scripts/`의 Python(mpmath)로 미리 계산해 `public/data/*.json`에 둔다. 브라우저에서 무거운 계산을 하지 않는다(필요하면 Web Worker).
 
 ## 콘텐츠 규칙
-- 스테이지 콘텐츠는 `content/{ko,en}/stage-XX.md`(MDX 아님: 수식 원고의 `{}`가 MDX와 충돌), 중고생판은 `content/{lang}/junior/`.
-  - `content/ko/stage-XX.md`는 `python3 scripts/split_story.py`로 `story-draft.md`에서 생성한다. 원고를 고친 뒤 다시 생성하고, 생성물은 직접 고치지 않는다.
+- 스테이지 콘텐츠는 `content/{ko,en}/stage-XX.md`(MDX 아님: 수식 원고의 `{}`가 MDX와 충돌), 중고생판은 `content/{lang}/junior/`(원고 `content/ko/junior/story-draft.md`, 헤더의 '일반판/주니어' 토글).
+  - `content/{ko,en,ko/junior}/stage-XX.md`는 `python3 scripts/split_story.py`로 각 `story-draft.md`에서 생성한다(영어판 원고 `content/en/story-draft.md`는 번역 초안). 원고를 고친 뒤 다시 생성하고, 생성물은 직접 고치지 않는다.
   - `[그래픽:id]` 줄은 컴포넌트 자리(매핑은 `split_story.py`의 GRAPHICS), `**팩트체크**`·`**Junior 한 줄**` 단락과 `## 구현 메모` 이후는 빌드 시 제외(`scripts/vite-content-md.ts`).
 - Stage 6 Lv3 수식 원고: `content/ko/stage-06-lv3-derivation.md` (구현 메모 포함). 검증: `python3 scripts/verify_explicit_formula.py`
 - 그 외 Lv3 원고 `content/ko/stage-0X-lv3.md`는 AI 초안(앱에 "초안" 표시). 수치·항등식 검증: `python3 scripts/verify_lv3_drafts.py`
@@ -38,4 +38,4 @@
 - 외부 이미지·영상은 쓰지 않는다. 그래픽은 전부 직접 생성한다.
 
 ## 마일스톤
-PRD 8장 참고. 완료: M1(스캐폴드·데이터·Stage 6), M2(Stage 1~4), M3(Stage 5·7·8), M4 일부(Stage 0·9, Lv3 초안). M4: AI 튜터(정적 힌트)·Lv4·진행 저장 완료, 남은 것은 Lv3/Lv4 초안 오너 검토 후 `lv3Draft`/`lv4Draft` 해제. 이후 M5(Junior), M6(영어판·Manim).
+PRD 8장 참고. 완료: M1(스캐폴드·데이터·Stage 6), M2(Stage 1~4), M3(Stage 5·7·8), M4 일부(Stage 0·9, Lv3 초안). M4: AI 튜터(정적 힌트)·Lv4·진행 저장 완료, 남은 것은 Lv3/Lv4 초안 오너 검토 후 `lv3Draft`/`lv4Draft` 해제. M5(Junior: 원고·배지·체 타임어택) 1차 완료, M6(영어판 이야기 완료, Lv3/Lv4 번역·Manim 진행).

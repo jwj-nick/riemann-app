@@ -1,6 +1,17 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { smallestFactor } from '../../lib/primes';
+import { useEdition } from '../../lib/edition';
+
+const BEST_KEY = 'sieve-best';
+const readBest = (n: number): number | null => {
+  try {
+    const v = localStorage.getItem(`${BEST_KEY}-${n}`);
+    return v ? Number(v) : null;
+  } catch {
+    return null;
+  }
+};
 
 const SIZES = [60, 120, 200];
 const PALETTE = ['--c1', '--c2', '--c3', '--c4', '--c5', '--c6'];
@@ -15,6 +26,13 @@ export default function Sieve() {
   const [msg, setMsg] = useState<string>(t('sieve.tapHint'));
   const [busy, setBusy] = useState(false);
   const timers = useRef<number[]>([]);
+  // Junior 타임어택: 첫 탭부터 완료까지 (자동 사용 시 기록 안 함)
+  const junior = useEdition() === 'junior';
+  const [t0, setT0] = useState<number | null>(null);
+  const [now, setNow] = useState(0);
+  const [usedAuto, setUsedAuto] = useState(false);
+  const [best, setBest] = useState<number | null>(() => readBest(N));
+  const [record, setRecord] = useState<number | null>(null);
 
   const clearTimers = () => {
     timers.current.forEach(clearTimeout);
@@ -24,6 +42,10 @@ export default function Sieve() {
 
   const reset = (n = N) => {
     clearTimers();
+    setT0(null);
+    setUsedAuto(false);
+    setRecord(null);
+    setBest(readBest(n));
     setN(n);
     setCrossedBy(new Map());
     setPrimes([]);
@@ -67,6 +89,7 @@ export default function Sieve() {
     if (by) return setMsg(t('sieve.crossed', { n: k, p: by }));
     if (spf[k] !== k) return setMsg(t('sieve.notYet', { n: k, p: spf[k] }));
     setMsg(t('sieve.tapHint'));
+    if (t0 === null) setT0(performance.now());
     strike(k);
   };
 
@@ -81,11 +104,33 @@ export default function Sieve() {
 
   const auto = () => {
     if (busy) return;
+    setUsedAuto(true);
     const todo: number[] = [];
     for (let q = 2; q * q <= N; q++) if (spf[q] === q && !isPrime.has(q)) todo.push(q);
     const step = (i: number) => (i < todo.length ? strike(todo[i], () => step(i + 1)) : finishAll());
     step(0);
   };
+
+  // 타이머 표시
+  useEffect(() => {
+    if (!junior || t0 === null || finished) return;
+    const id = window.setInterval(() => setNow(performance.now()), 100);
+    return () => clearInterval(id);
+  }, [junior, t0, finished]);
+  // 완료 시 기록
+  useEffect(() => {
+    if (!junior || !finished || t0 === null || usedAuto || record !== null) return;
+    const sec = Math.round((performance.now() - t0) / 100) / 10;
+    setRecord(sec);
+    if (best === null || sec < best) {
+      setBest(sec);
+      try {
+        localStorage.setItem(`${BEST_KEY}-${N}`, String(sec));
+      } catch {
+        /* ignore */
+      }
+    }
+  }, [finished]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (finished && primes.length) setMsg(t('sieve.done', { n: N, count: primes.length }));
@@ -98,7 +143,10 @@ export default function Sieve() {
     <figure className="viz">
       <figcaption>
         <strong>{t('sieve.title')}</strong>
-        <span className="kval">{t('sieve.found', { count: primes.length })}</span>
+        <span className="kval">
+          {junior && t0 !== null && !finished && t('sieve.time', { s: ((now - t0) / 1000).toFixed(1) }) + ' · '}
+          {t('sieve.found', { count: primes.length })}
+        </span>
       </figcaption>
       <div className="sieve-grid" role="grid">
         {Array.from({ length: N }, (_, i) => i + 1).map((k) => {
@@ -120,6 +168,9 @@ export default function Sieve() {
       <p className="note" aria-live="polite">
         {msg}
       </p>
+      {junior && (record !== null || best !== null) && (
+        <p className="note ok">{record !== null && record === best ? t('sieve.newBest', { s: record }) : best !== null ? t('sieve.best', { s: best }) : ''}</p>
+      )}
       <div className="controls">
         {pastSqrt && !finished && (
           <button className="btn primary" onClick={finishAll} disabled={busy}>

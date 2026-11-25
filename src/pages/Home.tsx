@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { loadProgress, resetProgress } from '../lib/progress';
+import { useEdition } from '../lib/edition';
 
 const READY = new Set([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
 
@@ -10,13 +11,26 @@ export default function Home() {
   const [progress, setProgress] = useState(loadProgress);
   const done = (i: number) => (progress.seen[i]?.length ?? 0) > 0;
   const visited = Object.keys(progress.seen).length;
+  const junior = useEdition() === 'junior';
   return (
     <div className="page">
       <h1>{t('app.title')}</h1>
       <p className="subtitle">
         {t('app.subtitle')} <span className="badge">{t('app.draft')}</span>
       </p>
-      <p>{t('home.intro')}</p>
+      <p>{junior ? t('home.introJunior') : t('home.intro')}</p>
+      {junior && (
+        <div className="badges" aria-label={t('home.badges', { n: visited })}>
+          <span className="muted">{t('home.badges', { n: visited })}</span>
+          <div className="badge-row">
+            {Array.from({ length: 10 }, (_, i) => (
+              <span key={i} className={`prime-badge${done(i) ? ' got' : ''}`} title={t(`stages.${i}`)}>
+                {[2, 3, 5, 7, 11, 13, 17, 19, 23, 29][i]}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
       {progress.last !== undefined && (
         <p className="resume">
           <Link to={`/stage/${progress.last}`} className="btn primary">

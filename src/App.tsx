@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { HashRouter, Link, Route, Routes, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Home from './pages/Home';
+import { setEdition, useEdition } from './lib/edition';
 import Stage06 from './stages/Stage06';
 import { Stage00, Stage01, Stage02, Stage03, Stage04 } from './stages/basic';
 import { Stage05, Stage07, Stage08, Stage09 } from './stages/advanced';
@@ -16,6 +17,7 @@ function ScrollToTop() {
 
 export default function App() {
   const { t, i18n } = useTranslation();
+  const edition = useEdition();
   return (
     <HashRouter>
       <ScrollToTop />
@@ -23,9 +25,14 @@ export default function App() {
         <Link to="/" className="brand">
           {t('app.title')}
         </Link>
-        <button className="ghost" onClick={() => i18n.changeLanguage(i18n.language === 'ko' ? 'en' : 'ko')}>
-          {t('nav.lang')}
-        </button>
+        <span className="top-actions">
+          <button className={`ghost${edition === 'junior' ? ' on' : ''}`} onClick={() => setEdition(edition === 'junior' ? 'standard' : 'junior')}>
+            {edition === 'junior' ? t('nav.junior') : t('nav.standard')}
+          </button>
+          <button className="ghost" onClick={() => i18n.changeLanguage(i18n.language === 'ko' ? 'en' : 'ko')}>
+            {t('nav.lang')}
+          </button>
+        </span>
       </header>
       <main>
         <Routes>

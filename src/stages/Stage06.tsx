@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import StagePage from './StagePage';
+import j6 from '../../content/ko/junior/stage-06.md';
 import ExplicitFormula from '../components/viz/ExplicitFormula';
 import PrimeSound from '../components/viz/PrimeSound';
 import storyKo from '../../content/ko/stage-06.md';
@@ -16,7 +17,7 @@ export default function Stage06() {
       n={6}
       prev={5}
       next={7}
-      content={{ story: { ko: storyKo, en: storyEn }, lv3: { ko: lv3Ko, en: lv3En }, lv4: { ko: lv4Ko, en: lv4En }, lv4Draft: true }}
+      content={{ story: { ko: storyKo, en: storyEn }, junior: { ko: j6 }, lv3: { ko: lv3Ko, en: lv3En }, lv4: { ko: lv4Ko, en: lv4En }, lv4Draft: true }}
       graphics={{
         'explicit-formula': <ExplicitFormula beta={beta} />,
         'prime-sound': <PrimeSound beta={beta} onBeta={setBeta} />,

@@ -1,5 +1,6 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { markSeen } from '../lib/progress';
+import { useEdition } from '../lib/edition';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import Prose, { type Segment } from '../components/Prose';
@@ -9,6 +10,8 @@ type Layer = (typeof LAYERS)[number];
 
 export interface StageContent {
   story: Record<string, Segment[]>;
+  /** 중고생판 이야기 (없는 언어는 일반판으로) */
+  junior?: Record<string, Segment[]>;
   lv3?: Record<string, Segment[]>;
   lv4?: Record<string, Segment[]>;
   /** Lv3 원고가 오너 검토 전 초안이면 true */
@@ -28,7 +31,9 @@ interface Props {
 export default function StagePage({ n, content, graphics, prev, next }: Props) {
   const { t, i18n } = useTranslation();
   const [layer, setLayer] = useState<Layer>('lv1');
+  const edition = useEdition();
   const pick = (m?: Record<string, Segment[]>) => m && (m[i18n.language] ?? m.ko);
+  const story = (edition === 'junior' && content.junior?.[i18n.language]) || pick(content.story)!;
   const lv3 = pick(content.lv3);
   const lv4 = pick(content.lv4);
   useEffect(() => {
@@ -37,7 +42,10 @@ export default function StagePage({ n, content, graphics, prev, next }: Props) {
 
   return (
     <article className="page stage">
-      <p className="eyebrow">Stage {n}</p>
+      <p className="eyebrow">
+        Stage {n}
+        {edition === 'junior' && <span className="badge junior">{t('nav.junior')}</span>}
+      </p>
       <nav className="layers" role="tablist">
         {LAYERS.map((l) => (
           <button
@@ -54,7 +62,7 @@ export default function StagePage({ n, content, graphics, prev, next }: Props) {
           </button>
         ))}
       </nav>
-      {layer === 'lv1' && <Prose segments={pick(content.story)!} graphics={graphics} />}
+      {layer === 'lv1' && <Prose segments={story} graphics={graphics} />}
       {layer === 'lv2' && (
         <div className="prose">
           <h1>{t(`stages.${n}`)}</h1>
