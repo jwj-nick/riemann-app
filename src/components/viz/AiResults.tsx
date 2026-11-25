@@ -62,6 +62,16 @@ export default function AiResults() {
         </span>
       </div>
       <p className="note">{t('ai.stripNote')}</p>
+
+      <p className="question">{t('ai.proofTitle')}</p>
+      <ul className="checklist">
+        {(['stated', 'noRedef', 'checkers', 'human', 'official'] as const).map((k) => (
+          <li key={k} className={k === 'human' || k === 'official' ? 'pending' : 'done'}>
+            <span aria-hidden>{k === 'human' || k === 'official' ? '⏳' : '✓'}</span> {t(`ai.check_${k}`)}
+          </li>
+        ))}
+      </ul>
+      <p className="note">{t('ai.proofNote')}</p>
     </figure>
   );
 }

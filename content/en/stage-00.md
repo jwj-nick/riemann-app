@@ -1,16 +1,16 @@
-# Prologue — A Door Closed for 167 Years
+# Prologue — A Door Opened After 167 Years?
 
 <!-- 자동 생성: scripts/split_story.py ← content/en/story-draft.md Stage 0. 직접 고치지 말고 원고를 고친 뒤 다시 생성. -->
 
-**Hook**: Solve it and win a million dollars. Nobody has — and now AI has started knocking on the door.
+**Hook**: Solve it and win a million dollars. For 167 years no one could — and in 2026 a mathematician working with AI announced he had.
 
 In May 2000, in a lecture hall in Paris, the Clay Mathematics Institute announced seven problems: the homework that mathematics of the new millennium would have to finish, the so-called Millennium Problems. Each carries a million-dollar prize, and so far only one has been solved.
 
 The oldest problem on that list is the Riemann hypothesis. In 1859 a German mathematician wrote, in the middle of a paper, a single sentence saying "very probably". For 167 years since, the best mathematicians of every generation have tried, and no one has reached the end.
 
-In the summer and autumn of 2026, the mood changed. AI broke, one after another, records around this problem that had stood still for decades. Newspapers wrote "AI takes on the Riemann hypothesis", and mathematicians replied, "not yet".
+In the summer and autumn of 2026, the mood changed. AI broke, one after another, records around this problem that had stood still for decades. Then in November an Anthropic mathematician released a proof of the Riemann hypothesis made together with Claude. Computer proof checkers say it is correct; mathematicians say they do not yet fully understand it.
 
-So what exactly is "not yet", and what is "already"? This app is a journey that lets you judge that difference for yourself. The starting point is the numbers you learned in primary school: 2, 3 and 5.
+If machines confirm a proof that people do not yet understand, has the door been opened? This app is a journey that lets you judge that for yourself. The starting point is the numbers you learned in primary school: 2, 3 and 5.
 
 [graphic:teaser] A five-second teaser of "the sound of the primes", made from the frequencies of the zeros. "By the end of the journey, you will know what this sound is."
 

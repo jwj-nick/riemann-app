@@ -10,3 +10,11 @@
 
 - J. B. Conrey, "The Riemann Hypothesis", *Notices of the AMS* 50 (2003)
 - H. M. Edwards, *Riemann's Zeta Function* (1974)
+
+## 2026년 11월: 리만 가설 형식 증명 (2026-11-25 기준)
+
+- 영어 위키백과, "Alpöge's proof of the Riemann hypothesis" (2026-11-25 판) — 공개·검증 경과, 증명 전략 요약, 반응
+- 검증 상황판: Andrew Sutherland(MIT), Michael Rubinstein(워털루)의 공개 대시보드
+- Lean 소스: lsernau/grh-lean (압축판, Apache 라이선스)
+
+이 사건은 진행 중입니다. 사람이 읽을 수 있는 증명이 나오면 이 장을 갱신합니다.

@@ -176,7 +176,7 @@
     "caption": "By the end of the journey, you will know what this sound is."
   },
   "ai": {
-    "title": "2026: two records",
+    "title": "The records of 2026",
     "gaugeTitle": "① Share of zeros proven to lie on the critical line (lower bound)",
     "gaugeNote": "Claude (Anthropic, Aug 2026): 41.6% → 67.2%. The Riemann hypothesis claims even more than filling this bar to 100%.",
     "stripTitle": "② Width of the strip that traps the zeros",
@@ -184,7 +184,14 @@
     "q12": "1/12–11/12 (OpenAI v2, not yet formally verified)",
     "q8": "1/8–7/8 (OpenAI v1, Lean-verified)",
     "rh": "RH: the single line ½",
-    "stripNote": "The narrower the strip, the more we can say about primes. But no strip, however narrow, is a single line. One line remains out of reach."
+    "stripNote": "The narrower the strip, the more we can say about primes. But no strip is a single line. The answer about that line is ③.",
+    "proofTitle": "③ RH itself: Alpöge–Claude formal proof, 20 Nov 2026 (about 17 million lines of Lean)",
+    "check_stated": "States RH correctly — uses the vetted Mathlib definition",
+    "check_noRedef": "Does not quietly redefine it — checked with comparator tools",
+    "check_checkers": "Passes independent checkers — joint certification by Lean FRO and Mathlib Initiative, 21 Nov",
+    "check_human": "A complete human-readable proof — not yet; mathematicians are working on it",
+    "check_official": "Official recognition by the Clay Institute — not confirmed",
+    "proofNote": "As of 25 Nov 2026. Machines have confirmed that it is correct; why it is correct is not yet fully written in human language."
   },
   "eulerSieve": {
     "title": "Euler's sieve: pulling primes out of a sum",
