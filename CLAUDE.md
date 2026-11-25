@@ -26,11 +26,12 @@
 - 스테이지 콘텐츠는 `content/{ko,en}/stage-XX.md`(MDX 아님: 수식 원고의 `{}`가 MDX와 충돌), 중고생판은 `content/{lang}/junior/`(원고 `content/ko/junior/story-draft.md`, 헤더의 '일반판/주니어' 토글).
   - `content/{ko,en,ko/junior}/stage-XX.md`는 `python3 scripts/split_story.py`로 각 `story-draft.md`에서 생성한다(영어판 원고 `content/en/story-draft.md`는 번역 초안). 원고를 고친 뒤 다시 생성하고, 생성물은 직접 고치지 않는다.
   - `[그래픽:id]` 줄은 컴포넌트 자리(매핑은 `split_story.py`의 GRAPHICS), `**팩트체크**`·`**Junior 한 줄**` 단락과 `## 구현 메모` 이후는 빌드 시 제외(`scripts/vite-content-md.ts`).
+- 직관(Lv2) 탭 해설: `content/ko/lv2/stage-XX.md`(쉬운 말 해설 + `[그래픽:id]` 자리, 빠진 그래픽은 끝에 자동 추가). 용어 사전: `content/{ko,en}/glossary.md` (`#/glossary`)
 - Stage 6 Lv3 수식 원고: `content/ko/stage-06-lv3-derivation.md` (구현 메모 포함). 검증: `python3 scripts/verify_explicit_formula.py`
 - 그 외 Lv3 원고 `content/ko/stage-0X-lv3.md`는 AI 초안(앱에 "초안" 표시). 수치·항등식 검증: `python3 scripts/verify_lv3_drafts.py`
 - Lv4 원고 `content/ko/stage-0X-lv4.md`(AI 초안, "초안" 표시). 코드 블록 실행 검증: `python3 scripts/verify_lv4_code.py`
 - 예측 질문 형식: `**예측 질문**: "질문" → 답` + 같은 단락 끝 줄 `**힌트**: h1 || h2` (AI 튜터, 힌트→답 순서로만 열림)
-- 2026 AI 사건(Stage 9) 원문 대조 기록: `docs/factcheck-stage9.md`
+- 2026 AI 사건(Stage 9) 원문 대조 기록: `docs/factcheck-stage9.md` (2026-11-25 알푀게·Claude RH 형식 증명 반영. 진행 중인 사건이라 갱신 시 날짜 기준 명시)
 - Stage 8 원자핵 데이터: `python3 scripts/compute_nuclear.py` (JEFF-3.3 U-238, GOE)
 - 원고의 [그래픽] 표시는 인터랙션 컴포넌트를 넣을 자리다.
 - 원고의 "팩트체크" 항목은 앱 화면에 내보내지 않는다. 검증 전 일화는 "전해진다" 표현을 유지한다.
