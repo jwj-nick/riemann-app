@@ -108,7 +108,7 @@ Imaginary numbers were not imaginary at all. They were the numbers of rotation. 
 
 A problem tormented seventeenth-century mathematicians. Add the reciprocals of the squares forever, 1 + 1/4 + 1/9 + 1/16 + …, and what do you get? The Bernoulli family of Basel tried and retreated, and the puzzle became "the Basel problem".
 
-The answer is about 1.6449. But nobody knew what that number really was. Around 1734, Leonhard Euler, a twenty-eight-year-old pupil of Bernoulli, gave the answer.
+The answer is about 1.6449. But nobody knew what that number really was. In 1735 Leonhard Euler, a twenty-eight-year-old pupil of Bernoulli, presented the answer.
 
 It was π²/6. Add up whole numbers and out comes the number of the circle. European mathematics was stunned, and Euler became a star overnight.
 
