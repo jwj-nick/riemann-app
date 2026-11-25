@@ -11,7 +11,10 @@
   "home": {
     "intro": "A journey to the Riemann Hypothesis for adults who forgot about primes. Each stage offers story → intuition → formula → deep dive.",
     "comingSoon": "Coming soon",
-    "start": "Open"
+    "start": "Open",
+    "resume": "Continue Stage {{n}}",
+    "visited": "{{n}} of 10 stages visited",
+    "reset": "Clear progress"
   },
   "stages": {
     "0": "Prologue",

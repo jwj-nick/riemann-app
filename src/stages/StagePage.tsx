@@ -1,4 +1,5 @@
-import { useState, type ReactNode } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
+import { markSeen } from '../lib/progress';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import Prose, { type Segment } from '../components/Prose';
@@ -29,6 +30,9 @@ export default function StagePage({ n, content, graphics, prev, next }: Props) {
   const pick = (m?: Record<string, Segment[]>) => m && (m[i18n.language] ?? m.ko);
   const lv3 = pick(content.lv3);
   const lv4 = pick(content.lv4);
+  useEffect(() => {
+    markSeen(n, layer);
+  }, [n, layer]);
 
   return (
     <article className="page stage">

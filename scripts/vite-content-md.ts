@@ -41,12 +41,21 @@ export function preprocess(src: string, lang = 'ko'): string {
     })
     .map((para) => {
       const p = para.trim().replace(/^(# .*?)\s*\(원고 v[\d.]+\)\s*$/, '$1');
-      const m = p.match(PREDICT);
+      // 선택: 같은 단락 끝 줄 "**힌트**: h1 || h2" → 답 전에 한 단계씩 여는 소크라테스식 힌트
+      const hm = p.match(/\n\*\*(?:힌트|Hints?)\*\*:\s*(.+)$/);
+      const hints = hm ? hm[1].split('||').map((h) => h.trim()) : [];
+      const body = hm ? p.slice(0, hm.index) : p;
+      const m = body.match(PREDICT);
       if (!m) return p;
       const label = lang === 'ko' ? '먼저 생각해 보기' : 'Think first';
       const reveal = lang === 'ko' ? '답 보기' : 'Show answer';
-      // 질문도 마크다운으로 처리(수식 포함 가능) — HTML 블록 사이에 빈 줄을 둔다
-      return `<div class="predict">\n\n**${label}** ${m[2]}\n\n<details><summary>${reveal}</summary>\n\n${m[3]}\n\n</details></div>`;
+      const hintLabel = (i: number) => (lang === 'ko' ? `힌트 ${i + 1}` : `Hint ${i + 1}`);
+      // 힌트를 중첩 details로: 힌트1 안에 힌트2, 그 안에 답 → 순서대로만 열린다
+      let inner = `<details class="answer"><summary>${reveal}</summary>\n\n${m[3]}\n\n</details>`;
+      for (let i = hints.length - 1; i >= 0; i--)
+        inner = `<details class="hint"><summary>${hintLabel(i)}</summary>\n\n${hints[i]}\n\n${inner}</details>`;
+      return `<div class="predict">\n\n**${label}** ${m[2]}\n\n${inner}</div>`;
+
     })
     .join('\n\n');
 }
