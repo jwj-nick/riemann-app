@@ -8,7 +8,7 @@ import storyEn from '../../content/en/stage-06.md';
 import lv3Ko from '../../content/ko/stage-06-lv3-derivation.md';
 import lv3En from '../../content/en/stage-06-lv3.md';
 import lv4Ko from '../../content/ko/stage-06-lv4.md';
-import lv4En from '../../content/en/lv4-pending.md';
+import lv4En from '../../content/en/stage-06-lv4.md';
 
 export default function Stage06() {
   const [beta, setBeta] = useState(0.5); // 영점 1의 실수부, 슬라이더·소리 공유

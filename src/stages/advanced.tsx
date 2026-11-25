@@ -15,14 +15,18 @@ import s9ko from '../../content/ko/stage-09.md';
 import s9en from '../../content/en/stage-09.md';
 import s9lv4ko from '../../content/ko/stage-09-lv4.md';
 import s9lv4en from '../../content/en/stage-09-lv4.md';
-import lv4en from '../../content/en/lv4-pending.md';
 import d5 from '../../content/ko/stage-05-lv4.md';
+import f5 from '../../content/en/stage-05-lv4.md';
 import d7 from '../../content/ko/stage-07-lv4.md';
+import f7 from '../../content/en/stage-07-lv4.md';
 import d8 from '../../content/ko/stage-08-lv4.md';
-import lv3en from '../../content/en/lv3-pending.md';
+import f8 from '../../content/en/stage-08-lv4.md';
 import l5 from '../../content/ko/stage-05-lv3.md';
+import e5 from '../../content/en/stage-05-lv3.md';
 import l7 from '../../content/ko/stage-07-lv3.md';
+import e7 from '../../content/en/stage-07-lv3.md';
 import l8 from '../../content/ko/stage-08-lv3.md';
+import e8 from '../../content/en/stage-08-lv3.md';
 import s5ko from '../../content/ko/stage-05.md';
 import s5en from '../../content/en/stage-05.md';
 import s7ko from '../../content/ko/stage-07.md';
@@ -31,7 +35,7 @@ import s8ko from '../../content/ko/stage-08.md';
 import s8en from '../../content/en/stage-08.md';
 
 export const Stage05 = () => (
-  <StagePage n={5} prev={4} next={6} content={{ story: { ko: s5ko, en: s5en }, junior: { ko: j5 }, lv3: { ko: l5, en: lv3en }, lv3Draft: true, lv4: { ko: d5, en: lv4en }, lv4Draft: true }} graphics={{ 'zeta-landscape': <ZetaLandscape /> }} />
+  <StagePage n={5} prev={4} next={6} content={{ story: { ko: s5ko, en: s5en }, junior: { ko: j5 }, lv3: { ko: l5, en: e5 }, lv3Draft: true, lv4: { ko: d5, en: f5 }, lv4Draft: true }} graphics={{ 'zeta-landscape': <ZetaLandscape /> }} />
 );
 
 export function Stage07() {
@@ -41,7 +45,7 @@ export function Stage07() {
       n={7}
       prev={6}
       next={8}
-      content={{ story: { ko: s7ko, en: s7en }, junior: { ko: j7 }, lv3: { ko: l7, en: lv3en }, lv3Draft: true, lv4: { ko: d7, en: lv4en }, lv4Draft: true }}
+      content={{ story: { ko: s7ko, en: s7en }, junior: { ko: j7 }, lv3: { ko: l7, en: e7 }, lv3Draft: true, lv4: { ko: d7, en: f7 }, lv4Draft: true }}
       graphics={{
         'zeta-spiral': <ZetaSpiral />,
         'off-line': (
@@ -56,7 +60,7 @@ export function Stage07() {
 }
 
 export const Stage08 = () => (
-  <StagePage n={8} prev={7} next={9} content={{ story: { ko: s8ko, en: s8en }, junior: { ko: j8 }, lv3: { ko: l8, en: lv3en }, lv3Draft: true, lv4: { ko: d8, en: lv4en }, lv4Draft: true }} graphics={{ spacing: <SpacingHistogram /> }} />
+  <StagePage n={8} prev={7} next={9} content={{ story: { ko: s8ko, en: s8en }, junior: { ko: j8 }, lv3: { ko: l8, en: e8 }, lv3Draft: true, lv4: { ko: d8, en: f8 }, lv4Draft: true }} graphics={{ spacing: <SpacingHistogram /> }} />
 );
 
 export const Stage09 = () => (
