@@ -150,10 +150,13 @@
     "gueCurve": "Random matrix (GUE) curve",
     "poissonCurve": "Pure random curve",
     "compare": "Overlay",
-    "gue": "GUE matrices",
-    "poisson": "Random points",
-    "small": "Share of spacings < ¼: zeta {{zeta}}%, GUE {{gue}}%, random {{poisson}}%. Zeros repel each other.",
-    "nuclear": "Instead of measured nuclear levels, we simulate the very model physicists built for heavy nuclei (GUE random matrices)."
+    "small": "Share of spacings < ¼: zeta {{zeta}}%, GUE {{gue}}%, uranium nucleus {{nuclear}}%, random {{poisson}}%. Zeros and nuclear levels both repel.",
+    "goeCurve": "Nuclear theory (GOE) curve",
+    "nuclearNote": "Measured: {{n}} neutron-resonance level spacings of uranium-238 (evaluated nuclear data JEFF-3.3, 0–10 keV, spin ½). Nuclei are time-reversal symmetric, so they follow GOE: repulsion slightly weaker than zeta zeros (GUE). Near 0 the curve grows like s (GOE) vs s² (GUE).",
+    "gueNote": "GUE is the random-matrix model physicists built for heavy nuclei; here we simulate it directly.",
+    "cmp_nuclear": "U-238 nucleus",
+    "cmp_gue": "GUE matrices",
+    "cmp_poisson": "Random points"
   },
   "teaser": {
     "play": "Listen",

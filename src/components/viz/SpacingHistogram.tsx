@@ -7,6 +7,7 @@ interface Spacings {
   zeta: number[];
   gue: number[];
   poisson: number[];
+  nuclear?: number[];
   zerosUsed: number;
 }
 
@@ -14,6 +15,8 @@ const BIN = 0.1;
 const SMAX = 3;
 const wigner = (s: number) => (32 / Math.PI ** 2) * s * s * Math.exp((-4 * s * s) / Math.PI);
 const poissonPdf = (s: number) => Math.exp(-s);
+/** GOE 위그너 추측 (시간 반전 대칭계: 원자핵 중성자 공명) */
+const goe = (s: number) => (Math.PI / 2) * s * Math.exp((-Math.PI * s * s) / 4);
 
 function hist(a: number[]): number[] {
   const n = Math.round(SMAX / BIN);
@@ -22,14 +25,17 @@ function hist(a: number[]): number[] {
   return h.map((c) => c / (a.length * BIN)); // 밀도
 }
 
-type Cmp = 'gue' | 'poisson';
+type Cmp = 'nuclear' | 'gue' | 'poisson';
 
 /** 정규화된 영점 간격 히스토그램 vs GUE(밀어냄) vs 무작위 점(포아송). */
 export default function SpacingHistogram() {
   const { t } = useTranslation();
   const { data } = useJson<Spacings>('spacings.json');
-  const [cmp, setCmp] = useState<Cmp>('poisson');
-  const h = useMemo(() => (data ? { zeta: hist(data.zeta), gue: hist(data.gue), poisson: hist(data.poisson) } : null), [data]);
+  const [cmp, setCmp] = useState<Cmp>('nuclear');
+  const h = useMemo(
+    () => (data ? { zeta: hist(data.zeta), gue: hist(data.gue), poisson: hist(data.poisson), nuclear: hist(data.nuclear ?? []) } : null),
+    [data],
+  );
   const small = (a?: number[]) => (a ? ((100 * a.filter((v) => v < 0.25).length) / a.length).toFixed(1) : '');
 
   const canvasRef = useCanvas(
@@ -41,7 +47,7 @@ export default function SpacingHistogram() {
       const YMAX = 1.3;
       const X = (s: number) => pad.l + (s / SMAX) * pw;
       const Y = (y: number) => pad.t + ph - (Math.min(y, YMAX) / YMAX) * ph;
-      const c = { grid: readVar('--grid'), text: readVar('--muted'), fg: readVar('--fg'), a: readVar('--accent'), p: readVar('--prime') };
+      const c = { grid: readVar('--grid'), text: readVar('--muted'), fg: readVar('--fg'), a: readVar('--accent'), p: readVar('--prime'), n: readVar('--c2') };
       ctx.font = '11px system-ui, sans-serif';
       ctx.fillStyle = c.text;
       ctx.strokeStyle = c.grid;
@@ -64,7 +70,7 @@ export default function SpacingHistogram() {
       if (!h) return;
       const bw = (BIN / SMAX) * pw;
       // 비교 데이터: 외곽선 막대
-      ctx.strokeStyle = cmp === 'gue' ? c.fg : c.p;
+      ctx.strokeStyle = cmp === 'gue' ? c.fg : cmp === 'nuclear' ? c.n : c.p;
       ctx.lineWidth = 1.2;
       h[cmp].forEach((v, i) => ctx.strokeRect(X(i * BIN) + 1, Y(v), bw - 2, Y(0) - Y(v)));
       // 제타 영점: 채운 막대
@@ -87,6 +93,7 @@ export default function SpacingHistogram() {
       };
       curve(wigner, c.fg, []);
       curve(poissonPdf, c.p, [5, 4]);
+      if (cmp === 'nuclear') curve(goe, c.n, [2, 3]);
     },
     [h, cmp],
   );
@@ -105,23 +112,28 @@ export default function SpacingHistogram() {
         <span className="sw accent thick" /> {t('spacing.zeta')}
         <span className="sw fg" /> {t('spacing.gueCurve')}
         <span className="sw prime dashed-prime" /> {t('spacing.poissonCurve')}
+        {cmp === 'nuclear' && (
+          <>
+            <span className="sw nuclear" /> {t('spacing.goeCurve')}
+          </>
+        )}
       </div>
+      <span className="muted">{t('spacing.compare')}</span>
       <div className="controls">
-        <span className="muted">{t('spacing.compare')}</span>
         <span className="seg" role="group">
-          {(['poisson', 'gue'] as Cmp[]).map((k) => (
+          {(['nuclear', 'gue', 'poisson'] as Cmp[]).map((k) => (
             <button key={k} className={k === cmp ? 'on' : ''} onClick={() => setCmp(k)}>
-              {t(`spacing.${k}`)}
+              {t(`spacing.cmp_${k}`)}
             </button>
           ))}
         </span>
       </div>
       {data && (
         <p className="note">
-          {t('spacing.small', { zeta: small(data.zeta), gue: small(data.gue), poisson: small(data.poisson) })}
+          {t('spacing.small', { zeta: small(data.zeta), gue: small(data.gue), poisson: small(data.poisson), nuclear: small(data.nuclear) })}
         </p>
       )}
-      <p className="note">{t('spacing.nuclear')}</p>
+      <p className="note">{cmp === 'nuclear' ? t('spacing.nuclearNote', { n: data?.nuclear?.length ?? 0 }) : t('spacing.gueNote')}</p>
     </figure>
   );
 }

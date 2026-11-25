@@ -44,6 +44,10 @@ def main() -> None:
     poisson = np.diff(pts) * len(zeta)
     r4 = lambda a: [round(float(v), 4) for v in a]
     data = {"zeta": r4(zeta), "gue": r4(gue[: len(zeta)]), "poisson": r4(poisson), "zerosUsed": len(g)}
+    old = D / "spacings.json"
+    if old.exists():  # compute_nuclear.py 가 넣은 원자핵 데이터는 보존
+        prev = json.loads(old.read_text())
+        data.update({k: v for k, v in prev.items() if k.startswith("nuclear")})
     (D / "spacings.json").write_text(json.dumps(data, separators=(",", ":")))
     for k in ("zeta", "gue", "poisson"):
         a = np.array(data[k])

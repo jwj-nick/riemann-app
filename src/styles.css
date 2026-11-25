@@ -179,3 +179,4 @@ h2 { font-size: 1.2rem; margin-top: 2em; }
 .swatch { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
 .swatch.strip-0 { background: var(--grid); } .swatch.strip-1 { background: var(--prime); opacity: .6; } .swatch.strip-2 { background: var(--accent); opacity: .7; } .swatch.rh { background: var(--danger); }
 .draft-banner { background: color-mix(in srgb, var(--prime) 14%, transparent); border: 1px solid var(--prime); color: var(--fg); border-radius: 8px; padding: 8px 12px; font-size: 14px; margin: 12px 0; }
+.sw.nuclear { border-top: 2px dotted var(--c2); }

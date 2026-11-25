@@ -59,6 +59,14 @@ check("S8 위그너: 넓이 1, 평균 1", abs(float(quad(p, [0, mp.inf])) - 1) <
 check("S8 포아송 P(s<¼) ≈ 22%", abs(1 - math.exp(-0.25) - 0.221) < 1e-3)
 check("S8 위그너 P(s<¼) ≈ 1.6%", abs(float(quad(p, [0, 0.25])) - 0.016) < 1e-3, f"{float(quad(p, [0, 0.25])):.4f}")
 
+q = lambda x: math.pi / 2 * x * math.exp(-math.pi * x * x / 4)
+check("S8 GOE P(s<¼) = 1−e^{−π/64} ≈ 4.8%", abs(float(quad(q, [0, 0.25])) - (1 - math.exp(-math.pi / 64))) < 1e-12 and abs(1 - math.exp(-math.pi / 64) - 0.048) < 5e-4)
+check("S8 GOE 위그너 원점 기울기 π/2", abs((q(1e-6) / 1e-6) - math.pi / 2) < 1e-6)
+check("S8 GUE 위그너 원점 계수 32/π²", abs(p(1e-4) / 1e-8 - 32 / math.pi**2) < 1e-4)
+sp = json.loads((D / "spacings.json").read_text())
+nuc = sp.get("nuclear", [])
+check("S8 우라늄 P(s<¼) ≈ 4.9%", nuc and abs(sum(v < 0.25 for v in nuc) / len(nuc) - 0.049) < 0.005, f"n={len(nuc)}")
+
 for name, ok, detail in checks:
     print(("PASS " if ok else "FAIL ") + name + (f"  ({detail})" if detail else ""))
 bad = [c for c in checks if not c[1]]
